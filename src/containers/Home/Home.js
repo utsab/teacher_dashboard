@@ -11,7 +11,7 @@ export default class Home extends Component {
     const logoImage = require('./logo.png');
     return (
       <div className={styles.home}>
-        <Helmet title="Home"/>
+        <Helmet title="Teacher Dashboard"/>
         <div className={styles.masthead}>
           <div className="container">
             <div className={styles.logo}>
