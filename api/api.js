@@ -7,6 +7,7 @@ import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
+const MongoClient = require('mongodb').MongoClient; 
 
 const pretty = new PrettyError();
 const app = express();
@@ -15,6 +16,27 @@ const server = new http.Server(app);
 
 const io = new SocketIo(server);
 io.path('/ws');
+
+var db; 
+
+function connectToDB() {
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$   About to connect to DB....."); 
+
+  MongoClient.connect('mongodb://psaigal:password@ds161630.mlab.com:61630/fcc-test-db', (err, database) => {
+  if (err) return console.log(err)
+  db = database; 
+  // app.listen(3000, () => {
+  //   console.log('listening on 3000')
+  // })
+
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$   we are connected to db!"); 
+  console.log(db); 
+
+  // 
+  })
+}
+
+connectToDB(); 
 
 app.use(session({
   secret: 'react and redux rule!!!!',
