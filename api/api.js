@@ -40,8 +40,6 @@ function connectToDB() {
   })
 }
 
-connectToDB(); 
-
 function setupServer() {
 
   console.log("In setupServer... ********************")
@@ -61,7 +59,7 @@ function setupServer() {
     const {action, params} = mapUrl(actions, splittedUrlPath);
 
     if (action) {
-      action(req, params)
+      action(req, params, db)
         .then((result) => {
           if (result instanceof Function) {
             result(res);
@@ -120,3 +118,6 @@ function setupServer() {
     console.error('==>     ERROR: No PORT environment variable has been specified');
   }
 }
+
+
+connectToDB(); 
