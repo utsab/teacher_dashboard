@@ -43,6 +43,7 @@ function setupServer() {
     const {action, params} = mapUrl(actions, splittedUrlPath);
 
     if (action) {
+      console.log(action);
       action(req, params, model)
         .then((result) => {
           if (result instanceof Function) {

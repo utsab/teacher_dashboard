@@ -37,6 +37,7 @@ export function isLoaded(globalState) {
 }
 
 export function load() {
+  console.log('in load function!');
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/loadInfo')

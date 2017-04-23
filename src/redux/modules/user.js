@@ -1,12 +1,12 @@
-const LOAD = 'redux-example/LOAD';
-const LOAD_SUCCESS = 'redux-example/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/LOAD_FAIL';
+const LOAD = 'redux-example/user/LOAD';
+const LOAD_SUCCESS = 'redux-example/user/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/user/LOAD_FAIL';
 
 const initialState = {
   loaded: false
 };
 
-export default function info(state = initialState, action = {}) {
+export default function users(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
       return {
@@ -33,7 +33,7 @@ export default function info(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  return globalState.info && globalState.info.loaded;
+  return globalState.users && globalState.users.loaded;
 }
 
 export function load() {
