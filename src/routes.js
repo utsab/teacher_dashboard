@@ -12,6 +12,7 @@ import {
     Survey,
     NotFound,
     Pagination,
+    Challenge,
   } from 'containers';
 
 export default (store) => {
@@ -52,6 +53,7 @@ export default (store) => {
       <Route path="pagination" component={Pagination}/>
       <Route path="survey" component={Survey}/>
       <Route path="widgets" component={Widgets}/>
+      <Route path="challenge" component={Challenge}/>
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />
