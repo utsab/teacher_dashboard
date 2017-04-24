@@ -10,9 +10,6 @@ const initialState = {
 };
 
 export default function users(state = initialState, action = {}) {
-  console.log('In users reducer ^^^^^^^^^^^^^^^^^^^^^^^^^');
-  console.log(action.type);
-
   switch (action.type) {
     case LOAD:
       return {
@@ -20,8 +17,6 @@ export default function users(state = initialState, action = {}) {
         loading: true
       };
     case LOAD_SUCCESS:
-      console.log('user load success!!!***************');
-      console.log(action.result);
       return {
         ...state,
         loading: false,
@@ -42,13 +37,10 @@ export default function users(state = initialState, action = {}) {
         loading: true
       };
     case SAVE_SUCCESS:
-      console.log('user SAVE_SUCCESS!!!***************');
-      console.log(action.result);
       return {
         ...state,
         loading: false,
-        loaded: true,
-        data: action.result
+        loaded: false,
       };
     case SAVE_FAIL:
       console.log('CASE SAVE FAIL!!!***************');

@@ -32,7 +32,7 @@ function setupServer() {
     secret: 'react and redux rule!!!!',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 300000 }
   }));
   app.use(bodyParser.json());
 
@@ -41,10 +41,9 @@ function setupServer() {
     const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
     const {action, params} = mapUrl(actions, splittedUrlPath);
-    console.log("In API JS*******************************");
-    console.log(action);
+    // console.log("In API JS*******************************");
+    // console.log(action);
     if (action) {
-      console.log(action);
       action(req, params, model)
         .then((result) => {
           if (result instanceof Function) {

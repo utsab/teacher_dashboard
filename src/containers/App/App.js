@@ -25,6 +25,8 @@ import { asyncConnect } from 'redux-async-connect';
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
+
+    console.log('In asyncConnct thing %%%%%%%%%%%%%%%%%%%%%');
     if (!isUserLoaded(getState())) {
       promises.push(dispatch(loadUser()));
     }
@@ -86,18 +88,18 @@ export default class App extends Component {
                 <NavItem eventKey={1}>Chat</NavItem>
               </LinkContainer>}
 
-              <LinkContainer to="/widgets">
+              {user && <LinkContainer to="/widgets">
                 <NavItem eventKey={2}>Widgets</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/survey">
+              </LinkContainer>}
+              {user && <LinkContainer to="/survey">
                 <NavItem eventKey={3}>Survey</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/pagination">
+              </LinkContainer>}
+              {user && <LinkContainer to="/pagination">
                 <NavItem eventKey={4}>Pagination</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/about">
+              </LinkContainer>}
+              {user && <LinkContainer to="/about">
                 <NavItem eventKey={5}>About Us</NavItem>
-              </LinkContainer>
+              </LinkContainer>}
 
               {!user &&
               <LinkContainer to="/login">
