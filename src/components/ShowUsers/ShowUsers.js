@@ -1,23 +1,32 @@
-import React, {Component} from 'react';
-// import React, {Component, PropTypes} from 'react';
-// import {bindActionCreators} from 'redux';
-// import {connect} from 'react-redux';
-// import {load} from 'redux/modules/info';
+import React, {Component, PropTypes} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {addUser} from 'redux/modules/user';
 
-// @connect(
-//     // state => ({users: state.users.data}),
-//     dispatch => bindActionCreators({load}, dispatch))
+@connect(
+    state => ({user: state.user.data}),
+    dispatch => bindActionCreators({addUser}, dispatch))
 export default class ShowUsers extends Component {
-  // static propTypes = {
-  //   info: PropTypes.object,
-  //   load: PropTypes.func.isRequired
-  // }
+  static propTypes = {
+    user: PropTypes.object,
+    addUser: PropTypes.func.isRequired
+  }
 
   render() {
-    // const {info, load} = this.props; // eslint-disable-line no-shadow
-    // const styles = require('./InfoBar.scss');
+    const {user, addUser} = this.props; // eslint-disable-line no-shadow
+    const userDivs = user.map(function addUserx(userObj) {
+      return (
+        <div>
+          <div>{userObj.name}</div>
+          <div>{userObj.email}</div>
+        </div>
+        );
+    });
     return (
-     <div>Hello World!</div>
+      <div>
+        <div>{userDivs}</div>
+        <button onClick={addUser}>Add User</button>
+      </div>
     );
   }
 }

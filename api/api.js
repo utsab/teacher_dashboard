@@ -41,7 +41,8 @@ function setupServer() {
     const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
     const {action, params} = mapUrl(actions, splittedUrlPath);
-
+    console.log("In API JS*******************************");
+    console.log(action);
     if (action) {
       console.log(action);
       action(req, params, model)
