@@ -1,61 +1,29 @@
 var mongoose = require('mongoose'); //mongo connection
 var passwordHash = require('password-hash');
 
-export default function login(req, err, model) {	
+export default function signup(req, err, model) {
+	console.log("PASSWORD!!!!!");
+	var hashedPassword = passwordHash.generate(req.body.password);
+	console.log(hashedPassword);
+	console.log(passwordHash.isHashed(req.body.password)); // false
+    console.log(passwordHash.isHashed(hashedPassword)); // true
+
 	const Teacher = model.teachers;
 	const user = {
+	    name: req.body.name,
+	    username: req.body.username,
 	    email: req.body.email,
-	    password: req.body.password
+	    password: hashedPassword
 	};
 
- 	return new Promise((resolve,reject) => {
-	 	console.log('in login function');
-	 	Teacher.findOne({ 'email': user.email }, function (err, person) {
-			if (err) {
-				reject(new Error('fail!!!!!!!!!!!!!!!!!!!!!!!!!!in person===null'));
-			} 
-			else if(person == null) {
-				console.log("There is an error in login!!!!");
-				reject(new Error('user not found'));
-			}
-			else {
-				if((passwordHash.verify(user.password, person.password))) { // true
-					user.name = person.name;
-					user.username = person.username;
-					req.session.user = user;
-				  	resolve(user);
-				}
-				else {
-					reject(new Error('email and password do not match'));
-				}
-
-			 }
-		});
+	Teacher.create({ name:user.name, username:user.username, email:user.email, password: hashedPassword}, function (err, createdUser) {
+	    if(err) {
+			throw err;
+		}
 	});
-};
-
-
-// 	Teacher.findOne({ 'email': user.email }, function (err, person) {
-// 		if (err) {
-// 			console.log("There is an error in login!!!!");
-// 			console.log(err);
-// 			throw err;
-// 		} 
-// 		else {
-// 			console.log("*************************************");
-// 			console.log(user);
-// 			console.log(person);
-// 			console.log(passwordHash.verify(user.password, person.password)); // true
-// 			user.name = person.name;
-// 			user.username = person.username;
-// 			console.log(user);
-// 			console.log("user: in login function!!!");
-// 			req.session.user = user;
-// 		  	return Promise.resolve(user);
-// 		  }
-// 	})
-// }
-
+	req.session.user = user;
+  	return Promise.resolve(user);
+}
 
 
 

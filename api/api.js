@@ -15,6 +15,13 @@ import SocketIo from 'socket.io';
 const pretty = new PrettyError();
 const app = express();
 
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 const server = new http.Server(app);
 
 const io = new SocketIo(server);
@@ -41,11 +48,15 @@ function setupServer() {
     const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
     const {action, params} = mapUrl(actions, splittedUrlPath);
-    // console.log("In API JS*******************************");
+    console.log("In API JS*******************************");
     // console.log(action);
     if (action) {
-      action(req, params, model)
-        .then((result) => {
+      console.log(action);
+      console.log("action!");
+      var actionResult = action(req, params, model);
+      console.log(actionResult);
+      console.log("actionResult!");
+      actionResult.then((result) => {
           if (result instanceof Function) {
             result(res);
           } else {
@@ -56,6 +67,8 @@ function setupServer() {
             res.redirect(reason.redirect);
           } else {
             console.error('API ERROR:', pretty.render(reason));
+            console.log('reason');
+            console.log(reason);
             res.status(reason.status || 500).json(reason);
           }
         });

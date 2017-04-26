@@ -4,6 +4,11 @@ const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
 const LOGIN = 'redux-example/auth/LOGIN';
 const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
 const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
+
+const SIGNUP = 'redux-example/auth/SIGNUP';
+const SIGNUP_SUCCESS = 'redux-example/auth/SIGNUP_SUCCESS';
+const SIGNUP_FAIL = 'redux-example/auth/SIGNUP_FAIL';
+
 const LOGOUT = 'redux-example/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
@@ -39,12 +44,34 @@ export default function reducer(state = initialState, action = {}) {
         loggingIn: true
       };
     case LOGIN_SUCCESS:
+      console.log(action.result);
+      console.log('ACTION RESULT!!!!!!');
       return {
         ...state,
         loggingIn: false,
         user: action.result
       };
     case LOGIN_FAIL:
+      console.log('in LOGIN FAIL');
+      console.log(action);
+      return {
+        ...state,
+        loggingIn: false,
+        user: null,
+        loginError: action.error
+      };
+    case SIGNUP:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        loggingIn: false,
+        user: action.result
+      };
+    case SIGNUP_FAIL:
       return {
         ...state,
         loggingIn: false,
@@ -84,13 +111,25 @@ export function load() {
   };
 }
 
-export function login(name, username, email, password) {
+export function signup(name, username, email, password) {
+  return {
+    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+    promise: (client) => client.post('/signup', {
+      data: {
+        name: name,
+        username: username,
+        email: email,
+        password: password
+      }
+    })
+  };
+}
+
+export function login(email, password) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => client.post('/login', {
       data: {
-        name: name,
-        username: username,
         email: email,
         password: password
       }
