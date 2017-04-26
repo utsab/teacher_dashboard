@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 
 @connect(
-  state => ({user: state.auth.user, error: state.auth.error}),
+  state => ({user: state.auth.user, error: state.auth.loginError}),
   authActions)
 export default class Login extends Component {
   static propTypes = {
@@ -40,6 +40,8 @@ export default class Login extends Component {
   render() {
     const {user, logout, error} = this.props;
     const styles = require('./Login.scss');
+    console.log(error);
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     return (
       <div>
         <div className={styles.loginPage + ' container'}>
@@ -81,12 +83,11 @@ export default class Login extends Component {
                 <input type="text" ref="loginEmail" placeholder="Email" className="form-control"/><br/>
                 <input type="password" ref="loginPassword" placeholder="Password" className="form-control"/><br/>
               </div><br/>
-              <button className="btn btn-success" onClick={this.handleLoginSubmit}><i className="fa fa-sign-in"/>{' '}Sign Up
+              <button className="btn btn-success" onClick={this.handleLoginSubmit}><i className="fa fa-sign-in"/>{' '}Login
               </button>
             </form>
-            <p>This is your {error}</p>
             {error &&
-              <p>Error!</p>
+              <p>The email or password do not match an existing user.</p>
             }
             <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
           </div>

@@ -32,6 +32,8 @@ export default function reducer(state = initialState, action = {}) {
         user: action.result
       };
     case LOAD_FAIL:
+      console.log('in LOAD FAIL');
+      console.log(action.error);
       return {
         ...state,
         loading: false,
@@ -53,7 +55,7 @@ export default function reducer(state = initialState, action = {}) {
       };
     case LOGIN_FAIL:
       console.log('in LOGIN FAIL');
-      console.log(action);
+      console.log(action.error);
       return {
         ...state,
         loggingIn: false,
