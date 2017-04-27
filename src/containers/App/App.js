@@ -87,7 +87,9 @@ export default class App extends Component {
               {user && <LinkContainer to="/chat">
                 <NavItem eventKey={1}>Chat</NavItem>
               </LinkContainer>}
-
+              {user && <LinkContainer to="/manageClass">
+                <NavItem eventKey={1}>Manage Class</NavItem>
+              </LinkContainer>}
               {user && <LinkContainer to="/widgets">
                 <NavItem eventKey={2}>Widgets</NavItem>
               </LinkContainer>}

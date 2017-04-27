@@ -5,5 +5,6 @@ export signup from './signup';
 export logout from './logout';
 export loadUsers from './loadUsers';
 export postUser from './postUser';
+export postClassForm from './postClassForm';
 export * as widget from './widget/index';
 export * as survey from './survey/index';

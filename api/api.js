@@ -39,7 +39,7 @@ function setupServer() {
     secret: 'react and redux rule!!!!',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 300000 }
+    cookie: { maxAge: 3000000 }
   }));
   app.use(bodyParser.json());
 

@@ -51,7 +51,8 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggingIn: false,
-        user: action.result
+        user: action.result,
+        loginError: false
       };
     case LOGIN_FAIL:
       console.log('in LOGIN FAIL');
@@ -83,7 +84,7 @@ export default function reducer(state = initialState, action = {}) {
     case LOGOUT:
       return {
         ...state,
-        loggingOut: true
+        loggingOut: true,
       };
     case LOGOUT_SUCCESS:
       return {

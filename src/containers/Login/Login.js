@@ -59,7 +59,6 @@ export default class Login extends Component {
               <button className="btn btn-success" onClick={this.handleSignupSubmit}><i className="fa fa-sign-in"/>{' '}Sign Up
               </button>
             </form>
-            <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
           </div>
           }
           {user &&
@@ -89,7 +88,6 @@ export default class Login extends Component {
             {error &&
               <p>The email or password do not match an existing user.</p>
             }
-            <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
           </div>
           }
           {user &&

@@ -12,6 +12,7 @@ import {
     Survey,
     NotFound,
     Pagination,
+    ManageClass
   } from 'containers';
 
 export default (store) => {
@@ -48,6 +49,7 @@ export default (store) => {
         <Route path="survey" component={Survey}/>
         <Route path="widgets" component={Widgets}/>
         <Route path="loginSuccess" component={LoginSuccess}/>
+        <Route path="manageClass" component={ManageClass}/>
       </Route>
 
       { /* Routes */ }
