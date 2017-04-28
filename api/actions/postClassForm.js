@@ -1,23 +1,48 @@
 var mongoose = require('mongoose'); //mongo connection
 
 	export default function postClassForm(req, err, model) {
- 		var Student = model.students;
- 		console.log('POSTFORM!!!!!');
- 		console.log(req.session.user)
-		const student = {
-		    email: req.body.email,
-		    github: req.body.github,
-		    firstname: req.body.firstname,
-	        lastname: req.body.lastname,
-	        notes: req.body.notes
-		};
+		return new Promise((resolve,reject) => {
+	 		var Student = model.students;
+	 		var Teacher = model.teachers;
+	 		console.log('POSTFORM!!!!!');
+	 		console.log(req.session.user);
 
-		Student.create({ firstName: student.firstname, lastname: student.lastname, githubUsername: student.github, email: student.email, notes: student.notes }, function (err, createdUser) {
-			    if(err) {
-				throw err;
-				reject();
-			}
-			console.log(createdUser)
-		})
-  		return Promise.resolve(student);
+	 		const teacherEmail = req.session.user.email;	
+			const student = {
+			    email: req.body.email,
+			    github: req.body.github,
+			    firstname: req.body.firstname,
+		        lastname: req.body.lastname,
+		        notes: req.body.notes
+			};
+
+
+			Teacher.findOne({ 'email': teacherEmail }, function (err, person) {
+				Student.create({ firstName: student.firstname, lastname: student.lastname, githubUsername: student.github, email: student.email, notes: student.notes, teacher: person._id }, function (err, createdUser) {
+					    if(err) {
+							throw err;
+							reject();
+						}
+						else {
+							Student
+							.findOne({ 'email': student.email })
+							.populate('teacher') //This populates the author id with actual author information!
+							.exec(function (err, student) {
+							  if (err) return handleError(err);
+							});
+
+							Student
+							.find({ teacher : person._id })
+							.exec(function (err, students) {
+							  if (err) return handleError(err);
+							  console.log('yolo!!!!!!!!!!!!!!!!!!!!!!!!12345')
+							  const allStudentsList = students;
+							  console.log(allStudentsList);
+							  resolve(allStudentsList); 
+							  // returns all stories that have Bob's id as their author.
+							});
+						}
+					});
+				});
+	  	});
 	}

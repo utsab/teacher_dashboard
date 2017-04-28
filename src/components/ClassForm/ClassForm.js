@@ -1,19 +1,30 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {addStudent} from 'redux/modules/ClassForm';
+import {addStudent} from 'redux/modules/classForm';
+console.log(addStudent);
 
-@connect(
-    // state => ({studentList: state.studentList.data}),
-    dispatch => bindActionCreators({addStudent}, dispatch))
+function mapStateToProps(state) {
+  return {
+    studentList: state.classForm.studentList
+  };
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({addStudent: addStudent}, dispatch);
+}
+
+@connect(mapStateToProps, matchDispatchToProps)
 
 export default class ClassForm extends Component {
   static propTypes = {
-    studentList: PropTypes.object,
-    addStudent: PropTypes.func.isRequired
+    addStudent: PropTypes.func.isRequired,
+    dispatch: PropTypes.func
   }
 
   addNewStudent = (event) => {
+    console.log('in add new student');
+    console.log(this.props);
     event.preventDefault();
     const studentEmail = this.refs.studentEmail;
     const github = this.refs.github;
@@ -31,7 +42,6 @@ export default class ClassForm extends Component {
   render() {
     return (
       <form>
-        <h1>Add New Student</h1>
         Student Email<br/>
         <input type="text" ref="studentEmail" className="form-control"/>
         <br/>

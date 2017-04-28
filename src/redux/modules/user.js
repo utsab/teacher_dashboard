@@ -31,7 +31,6 @@ export default function users(state = initialState, action = {}) {
         error: action.error
       };
     case SAVE:
-      console.log('CASE SAVE!!!***************');
       return {
         ...state,
         loading: true
@@ -43,7 +42,6 @@ export default function users(state = initialState, action = {}) {
         loaded: false,
       };
     case SAVE_FAIL:
-      console.log('CASE SAVE FAIL!!!***************');
       return {
         ...state,
         loading: false,

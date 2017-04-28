@@ -1,6 +1,3 @@
-const LOAD = 'redux-example/student/LOAD';
-const LOAD_SUCCESS = 'redux-example/student/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/student/LOAD_FAIL';
 const SAVE = 'redux-example/student/SAVE';
 const SAVE_SUCCESS = 'redux-example/student/SAVE_SUCCESS';
 const SAVE_FAIL = 'redux-example/student/SAVE_FAIL';
@@ -11,25 +8,6 @@ const initialState = {
 
 export default function users(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD:
-      return {
-        ...state,
-        loading: true
-      };
-    case LOAD_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        data: action.result
-      };
-    case LOAD_FAIL:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-        error: action.error
-      };
     case SAVE:
       console.log('CASE SAVE!!!***************');
       return {
@@ -37,6 +15,8 @@ export default function users(state = initialState, action = {}) {
         loading: true
       };
     case SAVE_SUCCESS:
+      console.log(action.result);
+      console.log('action result studentList');
       return {
         ...state,
         loading: false,
