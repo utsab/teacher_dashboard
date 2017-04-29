@@ -8,13 +8,16 @@ export default function challenge() {
 
   return new Promise((resolve, reject) => {
     var challenge = { title: '', description: '', solution: '' };
-    var body = {}
+    var body = {};
     request(scraperChallengeUrl + challengeName, function (error, response, body){
       if (error) {
         throw error;
         reject();
       }
       body = JSON.parse(body);
+      if (!body.instruction) {
+        body.instruction = freeCodeCampUrl;
+      }
       resolve({
         title: body.title,
         description: body.instruction,
