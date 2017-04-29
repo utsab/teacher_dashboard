@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import { Solution } from 'components';
 
-export default class Challenge extends Component {
+export default class Challnege extends Component {
 
   render() {
     return (
       <div>
-        <h1>Testing</h1>
+        <Solution/>
       </div>
     );
   }
