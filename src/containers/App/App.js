@@ -9,6 +9,8 @@ import Helmet from 'react-helmet';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import { isLoaded as isUserLoaded, load as loadUser } from 'redux/modules/user';
+import { isLoaded as isStudentLoaded, load as loadStudent } from 'redux/modules/classForm';
+
 import { InfoBar } from 'components';
 import { ShowUsers } from 'components';
 import { push } from 'react-router-redux';
@@ -26,7 +28,10 @@ import { asyncConnect } from 'redux-async-connect';
       promises.push(dispatch(loadAuth()));
     }
 
-    console.log('In asyncConnct thing %%%%%%%%%%%%%%%%%%%%%');
+    if (!isStudentLoaded(getState()) && isAuthLoaded(getState())) {
+      promises.push(dispatch(loadStudent()));
+    }
+
     if (!isUserLoaded(getState())) {
       promises.push(dispatch(loadUser()));
     }

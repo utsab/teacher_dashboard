@@ -4,10 +4,8 @@ var mongoose = require('mongoose'); //mongo connection
 		return new Promise((resolve,reject) => {
 	 		var Student = model.students;
 	 		var Teacher = model.teachers;
-	 		console.log('POSTFORM!!!!!');
-	 		console.log(req.session.user);
 
-	 		const teacherEmail = req.session.user.email;	
+	 		const teacherEmail = req.session.user.email;
 			const student = {
 			    email: req.body.email,
 			    github: req.body.github,
@@ -18,7 +16,7 @@ var mongoose = require('mongoose'); //mongo connection
 
 
 			Teacher.findOne({ 'email': teacherEmail }, function (err, person) {
-				Student.create({ firstName: student.firstname, lastname: student.lastname, githubUsername: student.github, email: student.email, notes: student.notes, teacher: person._id }, function (err, createdUser) {
+				Student.create({ firstName: student.firstname, lastName: student.lastname, githubUsername: student.github, email: student.email, notes: student.notes, teacher: person._id }, function (err, createdUser) {
 					    if(err) {
 							throw err;
 							reject();
@@ -35,11 +33,8 @@ var mongoose = require('mongoose'); //mongo connection
 							.find({ teacher : person._id })
 							.exec(function (err, students) {
 							  if (err) return handleError(err);
-							  console.log('yolo!!!!!!!!!!!!!!!!!!!!!!!!12345')
 							  const allStudentsList = students;
-							  console.log(allStudentsList);
 							  resolve(allStudentsList); 
-							  // returns all stories that have Bob's id as their author.
 							});
 						}
 					});

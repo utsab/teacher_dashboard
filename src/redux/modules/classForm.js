@@ -1,13 +1,38 @@
 const SAVE = 'redux-example/student/SAVE';
 const SAVE_SUCCESS = 'redux-example/student/SAVE_SUCCESS';
 const SAVE_FAIL = 'redux-example/student/SAVE_FAIL';
+const LOAD = 'redux-example/student/LOAD';
+const LOAD_SUCCESS = 'redux-example/student/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/student/LOAD_FAIL';
 
 const initialState = {
-  loaded: false
+  loaded: false,
+  studentList: []
 };
 
-export default function users(state = initialState, action = {}) {
+export default function classForm(state = initialState, action = {}) {
   switch (action.type) {
+    case LOAD:
+      return {
+        ...state,
+        loading: true
+      };
+    case LOAD_SUCCESS:
+      console.log('load success for studnets');
+      console.log(action.result);
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        studentList: action.result
+      };
+    case LOAD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: action.error
+      };
     case SAVE:
       console.log('CASE SAVE!!!***************');
       return {
@@ -37,7 +62,18 @@ export default function users(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  return globalState.users && globalState.users.loaded;
+  console.log('students isLoaded!()()()()()');
+  console.log(globalState.classForm && globalState.classForm.loaded);
+  return globalState.classForm && globalState.classForm.loaded;
+}
+
+export function load() {
+  console.log('loading students **************');
+  console.log('*********************');
+  return {
+    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    promise: (client) => client.get('/loadClass')
+  };
 }
 
 export function addStudent(email, github, firstname, lastname, notes) {

@@ -9,30 +9,41 @@ import * as classActions from 'redux/modules/classForm';
 
 export default class ManageClass extends Component {
   static propTypes = {
-    studentList: PropTypes.object
+    studentList: PropTypes.array
   }
+
+  state = {
+    isOpen: false
+  };
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
   render() {
     const styles = require('./ManageClass.scss');
-    const {studentList} = this.props;
-    if (studentList) {
-      console.log(studentList);
-    }
     return (
       <div className={styles.manageClass}>
         <h1>Manage Students</h1>
-        <ClassForm />
+        <button onClick={this.toggleModal}>
+          Add A New Student
+        </button>
+        <ClassForm show={this.state.isOpen}
+          onClose={this.toggleModal} />
         <div className={styles.divTable}>
           <div className={styles.divTableBody}>
             <div className={styles.divTableRow}>
               <div className={styles.divTableCell}>First Name</div>
               <div className={styles.divTableCell}>Last Name</div>
-              <div className={styles.divTableCell}>Contact Email</div>
-              <div className={styles.divTableCell}>Date Enrolled</div>
-              <div className={styles.divTableCell}>Note</div>
+              <div className={styles.divTableCell}>Github</div>
+              <div className={styles.divTableCell}>Email</div>
+              <div className={styles.divTableCell}>Notes</div>
             </div>
           </div>
         </div>
-        <ManageClassAddStudent />
+        <ManageClassAddStudent arrayStudents={this.props.studentList} />
       </div>
 
     );
