@@ -8,6 +8,7 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
+import { isChallengesListLoaded, loadChallengesList } from 'redux/modules/solution';
 import { InfoBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
@@ -17,11 +18,15 @@ import { asyncConnect } from 'redux-async-connect';
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
+    console.log('IN APP.JS asyncConnect!!!!!!!!!!!!!');
     if (!isInfoLoaded(getState())) {
       promises.push(dispatch(loadInfo()));
     }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
+    }
+    if (!isChallengesListLoaded(getState())) {
+      promises.push(dispatch(loadChallengesList()));
     }
 
     return Promise.all(promises);
@@ -93,8 +98,8 @@ export default class App extends Component {
               <LinkContainer to="/about">
                 <NavItem eventKey={5}>About Us</NavItem>
               </LinkContainer>
-              <LinkContainer to="/challenge">
-                <NavItem eventKey={6}>Challenge</NavItem>
+              <LinkContainer to="/challenges">
+                <NavItem eventKey={6}>Challenges</NavItem>
               </LinkContainer>
 
               {!user &&
