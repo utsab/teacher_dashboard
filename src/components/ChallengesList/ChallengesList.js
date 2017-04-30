@@ -29,7 +29,7 @@ export default class Solution extends Component {
 
     return (
       <div className="solution">
-        <h2>Testing</h2>
+        <h2>ChallengesList</h2>
         <ul>
           {challenges}
         </ul>

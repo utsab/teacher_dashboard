@@ -19,6 +19,7 @@ export default function loadChallenge(req, body) {
       if (!body.instruction) {
         body.instruction = freeCodeCampBaseUrl;
       }
+      console.log(decodeURIComponent(solution));
       resolve({
         title: body.title,
         description: body.instruction,
