@@ -16,14 +16,15 @@ export default class Solution extends Component {
 
   render() {
     const {challengesList} = this.props;
+    const _this = this;
 
-    const challenges = challengesList.map(function(challengeObj) {
+    const challenges = challengesList.map(function renderChallengeTitle(challengeObj) {
       return (
-          <li onClick={this.props.loadChallenge}>
+          <li onClick={() => _this.props.loadChallenge(challengeObj.url)}>
             {challengeObj.title}
           </li>
         );
-    }.bind(this));
+    });
 
 
     return (

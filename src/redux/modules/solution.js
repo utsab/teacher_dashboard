@@ -58,11 +58,12 @@ export function isChallengesListLoaded(globalState) {
   return globalState.solution.challengesList && globalState.solution.loaded;
 }
 
-export function loadChallenge() {
+export function loadChallenge(url) {
   console.log('loadChallenge!!!!!!!!!@%%&^*^');
+  console.log('/loadChallenge?url=' + url);
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadChallenge')
+    promise: (client) => client.get('/loadChallenge?url=' + url)
   };
 }
 
