@@ -15,19 +15,23 @@ export default class Solution extends Component {
   };
 
   render() {
-    // const {challengesList} = this.props;
-    // const challenges = challengesList.map(function(challengeObj) {
-    //   return (
-    //       <li onClick={console.log('clicked!!!!')}>
-    //         {challengeObj.title}
-    //       </li>
-    //     );
-    // });
+    const {challengesList} = this.props;
+
+    const challenges = challengesList.map(function(challengeObj) {
+      return (
+          <li onClick={this.props.loadChallenge}>
+            {challengeObj.title}
+          </li>
+        );
+    }.bind(this));
+
 
     return (
       <div className="solution">
         <h2>Testing</h2>
-          <span className="left" onClick={function() {alert('left');}}>Left</span>
+        <ul>
+          {challenges}
+        </ul>
       </div>
     );
   }
