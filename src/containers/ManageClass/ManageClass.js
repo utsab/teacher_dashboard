@@ -35,11 +35,11 @@ export default class ManageClass extends Component {
         <div className={styles.divTable}>
           <div className={styles.divTableBody}>
             <div className={styles.divTableRow}>
-              <div className={styles.divTableCell}>First Name</div>
-              <div className={styles.divTableCell}>Last Name</div>
-              <div className={styles.divTableCell}>Github</div>
-              <div className={styles.divTableCell}>Email</div>
-              <div className={styles.divTableCell}>Notes</div>
+              <div className={styles.divTableCellHeader}>First Name</div>
+              <div className={styles.divTableCellHeader}>Last Name</div>
+              <div className={styles.divTableCellHeader}>Github</div>
+              <div className={styles.divTableCellHeader}>Email</div>
+              <div className={styles.divTableCellHeader}>Notes</div>
             </div>
           </div>
         </div>

@@ -50,17 +50,17 @@ export default class ClassForm extends Component {
         <div className={styles.modalStyle}>
           <h2>Add New Student</h2>
           <form>
-            Student Email<br/>
-            <input type="text" ref="studentEmail" className="form-control"/>
-            <br/>
-            Github Username<br/>
-            <input type="text" ref="github" className="form-control"/>
-            <br/>
             First name<br/>
             <input type="text" ref="firstname" className="form-control"/>
             <br/>
             Last name<br/>
             <input type="text" ref="lastname" className="form-control"/>
+            <br/>
+            Student Email<br/>
+            <input type="text" ref="studentEmail" className="form-control"/>
+            <br/>
+            Github Username<br/>
+            <input type="text" ref="github" className="form-control"/>
             <br/>
             Notes<br/>
             <input type="text" ref="notes" className="form-control"/>
