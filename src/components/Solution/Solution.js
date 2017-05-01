@@ -12,17 +12,29 @@ export default class Solution extends Component {
 
   render() {
     const {studentCode} = this.props;
+    const styles = require('./Solution.scss');
+    const textareaStyle = {color: 'white',
+                           backgroundColor: 'black',
+                           height: '800px', };
     return (
       <div className="solution">
-        <h2>StudentCode</h2>
-        <h3>{studentCode ? studentCode.title : ''}</h3>
-        <a href={studentCode ? studentCode.description : ''}>
-          {studentCode ? studentCode.description : ''}
-        </a>
-        <textarea name="studentCode"
-                  value={studentCode ? studentCode.solution : ''}
-                  disabled
-        />
+        <div className="col-md-4">
+          <div>
+            <strong className={styles.foobarfoo}>{studentCode ? studentCode.title : ''}</strong>
+          </div>
+          <p>
+            <a href={studentCode ? studentCode.description : ''}>
+              {studentCode ? studentCode.description : ''}
+            </a>
+          </p>
+        </div>
+        <div className="col-md-6">
+          <textarea name="studentCode"
+                    value={studentCode ? studentCode.solution : ''}
+                    disabled
+                    style={textareaStyle}
+          />
+        </div>
       </div>
     );
   }

@@ -28,8 +28,8 @@ export default class Solution extends Component {
 
 
     return (
-      <div className="solution">
-        <h2>ChallengesList</h2>
+      <div className="challengesList col-md-2">
+        <strong>ChallengesList</strong>
         <ul>
           {challenges}
         </ul>
