@@ -7,16 +7,22 @@ import {connect} from 'react-redux';
 
 export default class Solution extends Component {
   static propTypes = {
-    studentCode: PropTypes.object
+    studentCode: PropTypes
   };
 
   render() {
     const {studentCode} = this.props;
-    console.log(studentCode);
     return (
       <div className="solution">
         <h2>StudentCode</h2>
-        <textarea></textarea>
+        <h3>{studentCode ? studentCode.title : ''}</h3>
+        <a href={studentCode ? studentCode.description : ''}>
+          {studentCode ? studentCode.description : ''}
+        </a>
+        <textarea name="studentCode"
+                  value={studentCode ? studentCode.solution : ''}
+                  disabled
+        />
       </div>
     );
   }

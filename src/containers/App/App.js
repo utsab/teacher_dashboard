@@ -18,7 +18,6 @@ import { asyncConnect } from 'redux-async-connect';
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
-    console.log('IN APP.JS asyncConnect!!!!!!!!!!!!!');
     if (!isInfoLoaded(getState())) {
       promises.push(dispatch(loadInfo()));
     }

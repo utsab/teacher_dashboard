@@ -1,6 +1,6 @@
-const LOAD = 'redux-example/solution/LOAD';
-const LOAD_SUCCESS = 'redux-example/solution/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/solution/LOAD_FAIL';
+const LOAD_SOLUTION = 'redux-example/solution/LOAD_SOLUTION';
+const LOAD_SOLUTION_SUCCESS = 'redux-example/solution/LOAD_SOLUTION_SUCCESS';
+const LOAD_SOLUTION_FAIL = 'redux-example/solution/LOAD_SOLUTION_FAIL';
 const LOAD_CHALLENGES = 'redux-example/solution/LOAD_CHALLENGES';
 const LOAD_CHALLENGES_SUCCESS = 'redux-example/solution/LOAD_CHALLENGES_SUCCESS';
 const LOAD_CHALLENGES_FAIL = 'redux-example/solution/LOAD_CHALLENGES_FAIL';
@@ -11,20 +11,19 @@ const initialState = {
 
 export default function solution(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD:
+    case LOAD_SOLUTION:
       return {
         ...state,
         loading: true
       };
-    case LOAD_SUCCESS:
-      console.log(action.result);
+    case LOAD_SOLUTION_SUCCESS:
       return {
         ...state,
         loading: false,
         loaded: true,
         data: action.result
       };
-    case LOAD_FAIL:
+    case LOAD_SOLUTION_FAIL:
       return {
         ...state,
         loading: false,
@@ -60,10 +59,8 @@ export function isChallengesListLoaded(globalState) {
 }
 
 export function loadChallenge(url) {
-  console.log('loadChallenge!!!!!!!!!@%%&^*^');
-  console.log('/loadChallenge?url=' + url);
   return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    types: [LOAD_SOLUTION, LOAD_SOLUTION_SUCCESS, LOAD_SOLUTION_FAIL],
     promise: (client) => client.get('/loadChallenge?url=' + url)
   };
 }

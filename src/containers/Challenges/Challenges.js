@@ -5,7 +5,6 @@ import { ChallengesList } from 'components';
 export default class Challenges extends Component {
 
   render() {
-    console.log('CHALLENGES CONTAINER~!!!!!');
     return (
       <div>
         <ChallengesList/>
