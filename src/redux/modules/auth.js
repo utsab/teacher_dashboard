@@ -13,8 +13,11 @@ const LOGOUT = 'redux-example/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
 
+const GET_KEY = 'redux-example/auth/GET_KEY';
+
 const initialState = {
-  loaded: false
+  loaded: false,
+  key: 2
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -92,6 +95,13 @@ export default function reducer(state = initialState, action = {}) {
         loggingOut: false,
         logoutError: action.error
       };
+    case GET_KEY:
+      console.log(action.newKey);
+      console.log('HELLO!!!');
+      return {
+        ...state,
+        key: action.newKey
+      };
     default:
       return state;
   }
@@ -106,6 +116,10 @@ export function load() {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/loadAuth')
   };
+}
+
+export function setKey(newKey) {
+  return { type: GET_KEY, newKey };
 }
 
 export function signup(name, username, email, password) {
