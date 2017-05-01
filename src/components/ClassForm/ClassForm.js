@@ -24,8 +24,6 @@ export default class ClassForm extends Component {
   }
 
   addNewStudent = (event) => {
-    console.log('in add new student');
-    console.log(this.props);
     event.preventDefault();
     const studentEmail = this.refs.studentEmail;
     const github = this.refs.github;

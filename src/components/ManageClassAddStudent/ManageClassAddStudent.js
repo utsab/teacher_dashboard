@@ -7,7 +7,7 @@ export default class ManageClassAddStudent extends Component {
   render() {
     console.log(this.props.arrayStudents);
     const styles = require('containers/ManageClass/ManageClass.scss');
-    const blah = this.props.arrayStudents.map(function returnArray(student) {
+    const allStudents = this.props.arrayStudents.map(function returnArray(student) {
       return (
         <div className={styles.divTableRow}>
           <div className={styles.divTableCell}>{student.firstName}</div>
@@ -21,7 +21,7 @@ export default class ManageClassAddStudent extends Component {
     return (
       <div className={styles.divTable}>
         <div className={styles.divTableBody}>
-            {blah}
+            {allStudents}
         </div>
       </div>
     );
