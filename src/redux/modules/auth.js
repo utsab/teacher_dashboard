@@ -17,7 +17,7 @@ const GET_KEY = 'redux-example/auth/GET_KEY';
 
 const initialState = {
   loaded: false,
-  key: 2
+  key: 1
 };
 
 export default function reducer(state = initialState, action = {}) {
