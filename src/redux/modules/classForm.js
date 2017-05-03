@@ -4,6 +4,7 @@ const SAVE_FAIL = 'redux-example/student/SAVE_FAIL';
 const LOAD = 'redux-example/student/LOAD';
 const LOAD_SUCCESS = 'redux-example/student/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/student/LOAD_FAIL';
+const SHOW_MODAL = 'redux-example/student/SHOW_MODAL';
 
 const initialState = {
   loaded: false,
@@ -56,6 +57,11 @@ export default function classForm(state = initialState, action = {}) {
         loaded: false,
         error: action.error
       };
+    case SHOW_MODAL:
+      return {
+        ...state,
+        showModal: action.showModalBool
+      };
     default:
       return state;
   }
@@ -90,4 +96,8 @@ export function addStudent(email, github, firstname, lastname, notes) {
       }
     })
   };
+}
+
+export function showModalFunc(showModalBool) {
+  return { type: SHOW_MODAL, showModalBool };
 }

@@ -2,24 +2,27 @@ import React, {Component, PropTypes} from 'react';
 import { ManageClassAddStudent, ClassForm } from 'components';
 import {connect} from 'react-redux';
 import * as classActions from 'redux/modules/classForm';
-
+import Button from 'react-bootstrap/lib/Button';
 
 @connect(
-  state => ({studentList: state.classForm.studentList}), classActions)
+  state => ({studentList: state.classForm.studentList, showModal: state.classForm.showModal}),
+  classActions)
 
 export default class ManageClass extends Component {
   static propTypes = {
-    studentList: PropTypes.array
+    studentList: PropTypes.array,
+    showModal: PropTypes.bool,
+    showModalFunc: PropTypes.func
   }
 
-  state = {
-    isOpen: false
-  };
+  getInitialState() {
+    return { showModal: false };
+  }
 
-  toggleModal = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+  open = () => {
+    console.log('9768768');
+    console.log(this.props);
+    this.props.showModalFunc(true);
   }
 
   render() {
@@ -27,11 +30,14 @@ export default class ManageClass extends Component {
     return (
       <div className={styles.manageClass}>
         <h1>Manage Students</h1>
-        <button onClick={this.toggleModal}>
+        <Button
+          bsStyle="primary"
+          bsSize="large"
+          onClick={this.open}
+        >
           Add A New Student
-        </button>
-        <ClassForm show={this.state.isOpen}
-          onClose={this.toggleModal} />
+        </Button>
+        <ClassForm />
         <div className={styles.divTable}>
           <div className={styles.divTableBody}>
             <div className={styles.divTableRow}>

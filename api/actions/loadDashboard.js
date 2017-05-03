@@ -59,8 +59,13 @@ var request = require('request');
 						var one_day=1000*60*60*24;    // Convert both dates to milliseconds
 						var date1_ms = date1.getTime();   
 						var date2_ms = date2.getTime();    // Calculate the difference in milliseconds  
-						 var difference_ms = Math.abs(date2_ms - date1_ms);        // Convert back to days and return   
-						return Math.round(difference_ms/one_day); 
+						var difference_ms = Math.abs(date2_ms - date1_ms);        // Convert back to days and return 
+						if (difference_ms < one_day) {
+							return 0;
+						}  
+						else {
+							return Math.round(difference_ms/one_day); 
+						}
 					}
  
  
