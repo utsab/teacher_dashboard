@@ -13,20 +13,21 @@ const initialState = {
 export default function classDashboard(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
+      console.log('dashbaord load');
       return {
         ...state,
         loading: true
       };
     case LOAD_SUCCESS:
-      console.log('load success for studnets');
-      console.log(action.result);
+      console.log('load success dashboard!!!!!');
       return {
         ...state,
         loading: false,
         loaded: true,
-        studentList: action.result
+        dashboardData: action.result
       };
     case LOAD_FAIL:
+      console.log('dashbaord load fail');
       return {
         ...state,
         loading: false,
@@ -69,6 +70,6 @@ export function isLoaded(globalState) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadClass')
+    promise: (client) => client.get('/loadDashboard')
   };
 }

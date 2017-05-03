@@ -3,22 +3,23 @@ import {connect} from 'react-redux';
 import * as dashboardActions from 'redux/modules/classDashboard';
 
 @connect(
-  state => ({studentList: state.classDashboard.studentList}), dashboardActions)
+  state => ({dashboardData: state.classDashboard.dashboardData}), dashboardActions)
 
 export default class ClassDashboard extends Component {
   static propTypes = {
-    studentList: PropTypes.array
+    dashboardData: PropTypes.object
   }
   render() {
     const styles = require('./ClassDashboard.scss');
-    const getStudents = this.props.studentList.map(function returnArray(student) {
+    const getStudents = this.props.dashboardData.students.map(function returnArray(student) {
       return (
         <div className={styles.divTableRow}>
           <div className={styles.divTableCell}>{student.firstName}</div>
           <div className={styles.divTableCell}>{student.lastName}</div>
-          <div className={styles.divTableCell}>{student.githubUsername}</div>
+          <div className={styles.divTableCell}><a target="_blank" href={'https://www.freecodecamp.com/' + student.githubUsername}>{student.githubUsername}</a></div>
           <div className={styles.divTableCell}>{student.email}</div>
-          <div className={styles.divTableCell}>{student.notes}</div>
+          <div className={styles.divTableCell}>{student.daysInactive}</div>
+          <div className={styles.divTableCell}>{student.lastSubmittedAssignment}</div>
         </div>
       );
     }, this);
@@ -32,6 +33,7 @@ export default class ClassDashboard extends Component {
                 <div className={styles.divTableCellHeader}>Free Code Camp Profile</div>
                 <div className={styles.divTableCellHeader}>Submissions</div>
                 <div className={styles.divTableCellHeader}>Days Inactive</div>
+                <div className={styles.divTableCellHeader}>Last Submitted</div>
             </div>
           </div>
         </div>
