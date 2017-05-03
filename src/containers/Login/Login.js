@@ -50,7 +50,7 @@ export default class Login extends Component {
     const styles = require('./Login.scss');
     return (
       <div>
-        <Tabs activeKey={key} onClick={this.handleSelect} id="controlled-tab-example">
+        <Tabs activeKey={key} onChange={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Sign Up">
               <div className={styles.loginPage + ' container'}>
                 <Helmet title="Sign Up"/>
