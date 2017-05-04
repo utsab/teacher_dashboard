@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import * as dashboardActions from 'redux/modules/classDashboard';
 
 @connect(
-  state => ({dashboardData: state.classDashboard.dashboardData}), dashboardActions)
+  state => ({studentList: state.classDashboard.studentList}), dashboardActions)
 
 export default class ClassDashboard extends Component {
   static propTypes = {
-    dashboardData: PropTypes.object
+    studentList: PropTypes.array
   }
   render() {
     const styles = require('./ClassDashboard.scss');
-    const getStudents = this.props.dashboardData.students.map(function returnArray(student) {
+    const getStudents = this.props.studentList.map(function returnArray(student) {
       return (
         <div className={styles.divTableRow}>
           <div className={styles.divTableCell}>{student.firstName}</div>

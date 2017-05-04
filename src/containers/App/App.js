@@ -11,6 +11,8 @@ import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/module
 import { isLoaded as isUserLoaded, load as loadUser } from 'redux/modules/user';
 import { isLoaded as isStudentLoaded, load as loadStudent } from 'redux/modules/classForm';
 import { isLoaded as isDashboardLoaded, load as loadDashboard } from 'redux/modules/classDashboard';
+import { isLoaded as isEditStudentLoaded, load as loadEditStudent } from 'redux/modules/editStudent';
+
 
 import { InfoBar } from 'components';
 import { ShowUsers } from 'components';
@@ -33,6 +35,9 @@ import { asyncConnect } from 'redux-async-connect';
       promises.push(dispatch(loadStudent()));
     }
 
+    if (!isEditStudentLoaded(getState()) && isAuthLoaded(getState())) {
+      promises.push(dispatch(loadEditStudent()));
+    }
     if (!isDashboardLoaded(getState()) && isAuthLoaded(getState())) {
       promises.push(dispatch(loadDashboard()));
     }

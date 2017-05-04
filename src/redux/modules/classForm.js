@@ -19,8 +19,6 @@ export default function classForm(state = initialState, action = {}) {
         loading: true
       };
     case LOAD_SUCCESS:
-      console.log('load success for studnets');
-      console.log(action.result);
       return {
         ...state,
         loading: false,
@@ -35,14 +33,11 @@ export default function classForm(state = initialState, action = {}) {
         error: action.error
       };
     case SAVE:
-      console.log('CASE SAVE!!!***************');
       return {
         ...state,
         loading: true
       };
     case SAVE_SUCCESS:
-      console.log(action.result);
-      console.log('action result studentList');
       return {
         ...state,
         loading: false,
@@ -50,7 +45,6 @@ export default function classForm(state = initialState, action = {}) {
         studentList: action.result
       };
     case SAVE_FAIL:
-      console.log('CASE SAVE FAIL!!!***************');
       return {
         ...state,
         loading: false,
@@ -68,14 +62,10 @@ export default function classForm(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  console.log('students isLoaded!()()()()()');
-  console.log(globalState.classForm && globalState.classForm.loaded);
   return globalState.classForm && globalState.classForm.loaded;
 }
 
 export function load() {
-  console.log('loading students **************');
-  console.log('*********************');
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/loadClass')
@@ -101,3 +91,4 @@ export function addStudent(email, github, firstname, lastname, notes) {
 export function showModalFunc(showModalBool) {
   return { type: SHOW_MODAL, showModalBool };
 }
+

@@ -15,3 +15,4 @@ export ShowUsers from './ShowUsers/ShowUsers';
 export ManageClassAddStudent from './ManageClassAddStudent/ManageClassAddStudent';
 export ClassForm from './ClassForm/ClassForm';
 export ClassDashboard from './ClassDashboard/ClassDashboard';
+export EditStudent from './EditStudent/EditStudent';

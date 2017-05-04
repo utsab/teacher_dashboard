@@ -24,7 +24,7 @@ export default function classDashboard(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        dashboardData: action.result
+        studentList: action.result
       };
     case LOAD_FAIL:
       console.log('dashbaord load fail');

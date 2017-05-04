@@ -70,15 +70,12 @@ var request = require('request');
  
  
  					var daysSinceLastSubmission = Date.daysBetween(d,todayDate)
- 					console.log('daysSinceLastSubmission');
- 					console.log(daysSinceLastSubmission);
 
 					Student.findOneAndUpdate({email: student.email}, {$set:{lastSubmittedAssignment:finalDate}}, {new: true}, function(err, doc){
 					    if(err){
 					        console.log("Something wrong when updating data!");
 					    }
 
-					    console.log(doc);
 					});
 
 					Student.findOneAndUpdate({email: student.email}, {$set:{daysInactive:daysSinceLastSubmission}}, {new: true}, function(err, doc){
@@ -86,11 +83,8 @@ var request = require('request');
 					        console.log("Something wrong when updating data!");
 					    }
 
-					    console.log(doc);
 					});
-				    resolve({
-					  students:allStudentsList 
-					 });
+				    resolve(students:allStudentsList );
 
 				  }); 
 				});

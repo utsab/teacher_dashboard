@@ -15,13 +15,7 @@ export default class ManageClass extends Component {
     showModalFunc: PropTypes.func
   }
 
-  getInitialState() {
-    return { showModal: false };
-  }
-
   open = () => {
-    console.log('9768768');
-    console.log(this.props);
     this.props.showModalFunc(true);
   }
 
@@ -46,6 +40,7 @@ export default class ManageClass extends Component {
               <div className={styles.divTableCellHeader}>Github</div>
               <div className={styles.divTableCellHeader}>Email</div>
               <div className={styles.divTableCellHeader}>Notes</div>
+              <div className={styles.divTableCellHeader}></div>
             </div>
           </div>
         </div>
