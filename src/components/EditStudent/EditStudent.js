@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {editAStudent, showModalFuncEdit} from 'redux/modules/editStudent';
+import {editAStudent, showModalFuncEdit} from 'redux/modules/classForm';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 
 function mapStateToProps(state) {
   return {
-    showModal: state.editStudent.showModal,
+    showModal: state.classForm.showModal,
     studentList: state.classForm.studentList
   };
 }

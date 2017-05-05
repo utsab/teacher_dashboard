@@ -12,7 +12,7 @@ export default class ManageClass extends Component {
   static propTypes = {
     studentList: PropTypes.array,
     showModal: PropTypes.bool,
-    showModalFunc: PropTypes.func
+    showModalFunc: PropTypes.func,
   }
 
   open = () => {

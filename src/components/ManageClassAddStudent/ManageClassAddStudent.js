@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {isEditClicked, showModalFuncEdit} from 'redux/modules/editStudent';
+import {isEditClicked, showModalFuncEdit} from 'redux/modules/classForm';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {EditStudent} from 'components';
@@ -8,8 +8,8 @@ import Button from 'react-bootstrap/lib/Button';
 
 function mapStateToProps(state) {
   return {
-    studentId: state.editStudent.studentId,
-    showModal: state.editStudent.showModal,
+    studentId: state.classForm.studentId,
+    showModal: state.classForm.showModal,
     studentList: state.classForm.studentList
   };
 }
@@ -32,6 +32,7 @@ export default class ManageClassAddStudent extends Component {
   }
 
   handleClick = (event) => {
+    console.log('IN HANDLE Click EDIT');
     event.preventDefault();
     const studentID = event.currentTarget.attributes['data-id'].value;
     this.open();

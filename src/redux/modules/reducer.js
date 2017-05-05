@@ -11,7 +11,6 @@ import info from './info';
 import widgets from './widgets';
 import user from './user';
 import classForm from './classForm';
-import editStudent from './editStudent';
 import classDashboard from './classDashboard';
 
 export default combineReducers({
@@ -29,6 +28,5 @@ export default combineReducers({
   widgets,
   user,
   classForm,
-  classDashboard,
-  editStudent
+  classDashboard
 });
