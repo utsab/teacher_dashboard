@@ -8,11 +8,14 @@
   }
   form {
     text-align: justify;
+    display: inline-block;
      :global(.btn) {
       background-color: darkgreen;
       color: white;
       padding: 6px 25px 6px 25px;
       border-radius: 0px;
+      display: block;
+      margin: 0 auto;
     }
   }
   .formContainer {

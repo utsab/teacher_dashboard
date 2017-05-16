@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
+import { IndexLink } from 'react-router';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
+import logo from './freeCodeCamp.jpg';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import { isLoaded as isUserLoaded, load as loadUser } from 'redux/modules/user';
@@ -84,9 +85,8 @@ export default class App extends Component {
         <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <IndexLink to="/" activeStyle={{color: '#33e0ff'}}>
-                <div className={styles.brand}/>
-                <span>{config.app.title}</span>
+              <IndexLink to="/">
+                <a href="#" className="navbar-brand"><img className="img-responsive" src={logo}/></a>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>
