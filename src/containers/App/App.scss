@@ -2,33 +2,48 @@
   nav :global {
     background-color: darkgreen;
   }
-  nav :global(.fa) {
-    font-size: 2em;
-    line-height: 20px;
-  }
   nav :global(.navbar-brand) {
     padding: 0px;
   }
   nav :global(.navbar-brand>img) {
-    height: 100%;
-    padding: 9px 0px 4px 11px;
+    padding: 12px 0px 0px 0px;
     width: auto;
     margin: 0 auto;
+    height: 39px;
   }
-  nav :global(p) {
+  nav :global(.navbar-link) {
     color: white;
-    display: inline-block;
-    padding: 18px 9px;
+    border-bottom: none;
+    font-size: 20px;
   }
   @media (min-width: 768px) {
     nav :global(.navbar-brand>img) {
       height: 100%;
-      padding: 6px 4px 0px 14px;
+      padding-top: 6px;
       width: auto;
       margin: 0 auto;
     }
   }
 }
+
+.appNav {
+  nav :global {
+    background-color: white;
+    color: black;
+    border: 0px;
+    padding: 0px;
+  }
+  nav :global(a) {
+    font-size: 20px;
+    border-bottom: none;
+    color: #777;
+  }
+  :global(.navbar-default .navbar-nav > .active > a) {
+    color: #777;
+    font-weight: 600;
+  }
+}
+
 .appContent {
   margin: 50px 0; // for fixed navbar
 }
