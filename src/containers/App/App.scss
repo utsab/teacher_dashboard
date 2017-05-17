@@ -37,6 +37,9 @@
     nav :global(.navbar-link) {
       font-size: 20px;
     }
+    nav :global(li) {
+      float: right;
+    }
   }
 }
 
@@ -55,6 +58,15 @@
   :global(.navbar-default .navbar-nav > .active > a) {
     color: #777;
     font-weight: 600;
+  }
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    nav :global { 
+      margin: 50px 0;
+    }
   }
 }
 

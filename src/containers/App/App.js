@@ -93,14 +93,36 @@ export default class App extends Component {
               </Navbar.Brand>
                {user && <Navbar.Toggle />}
             </Navbar.Header>
-             {user && <Navbar.Collapse>
-              <Navbar.Text pullRight>
-                <Navbar.Link className="logout-link" onClick={this.handleLogout} href="/logout">Logout</Navbar.Link>
-              </Navbar.Text>
+             {user && <Navbar.Collapse eventKey={0}>
+                  <Nav navbar>
+                    {user && <LinkContainer to="/chat">
+                      <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Chat</NavItem>
+                    </LinkContainer>}
+                    {user && <LinkContainer to="/manageClass">
+                      <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Manage Class</NavItem>
+                    </LinkContainer>}
+                    {user && <LinkContainer to="/widgets">
+                      <NavItem eventKey={2} className="hidden-sm hidden-md hidden-lg">Widgets</NavItem>
+                    </LinkContainer>}
+                    {user && <LinkContainer to="/survey">
+                      <NavItem eventKey={3} className="hidden-sm hidden-md hidden-lg">Survey</NavItem>
+                    </LinkContainer>}
+                    {user && <LinkContainer to="/pagination">
+                      <NavItem eventKey={4} className="hidden-sm hidden-md hidden-lg">Pagination</NavItem>
+                    </LinkContainer>}
+                    {user && <LinkContainer to="/about">
+                      <NavItem eventKey={5} className="hidden-sm hidden-md hidden-lg">About Us</NavItem>
+                    </LinkContainer>}
+                    {user && <LinkContainer to="/logout">
+                      <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                        Logout
+                      </NavItem>
+                    </LinkContainer>}
+                  </Nav>
             </Navbar.Collapse>}
           </Navbar>
           <div className={styles.appNav}>
-            {user && <Navbar>
+            {user && <Navbar className="hidden-xs">
               <Navbar.Header>
                 <Navbar.Brand>
                 </Navbar.Brand>
@@ -127,8 +149,6 @@ export default class App extends Component {
                       <NavItem eventKey={5}>About Us</NavItem>
                     </LinkContainer>}
                   </Nav>
-                  {user &&
-                  <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
                 </Navbar.Collapse>
             </Navbar>}
           </div>
