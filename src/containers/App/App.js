@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { IndexLink } from 'react-router';
+// import { IndexLink } from 'react-router';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
@@ -86,13 +86,11 @@ export default class App extends Component {
           <Navbar fixedTop>
             <Navbar.Header>
               <Navbar.Brand>
-                <IndexLink to="/">
-                  <a href="#" className="navbar-brand"><img className="img-responsive" src={logo}/></a>
-                </IndexLink>
+                <a href="/" className="navbar-brand pull-left">
+                  <img src={logo}/>
+                  <span>Teacher Dashboard BETA</span>
+                </a>
               </Navbar.Brand>
-              <Navbar.Text pullLeft>
-                Teacher Dashboard BETA
-              </Navbar.Text>
                {user && <Navbar.Toggle />}
             </Navbar.Header>
              {user && <Navbar.Collapse>

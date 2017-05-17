@@ -4,24 +4,38 @@
   }
   nav :global(.navbar-brand) {
     padding: 0px;
+    margin-bottom: 10px;
+    border-bottom: none;
+  }
+  nav :global(.navbar-brand>span) {
+    color: white;
+    padding-left: 10px;
+    display: inline-block;
+    font-size: 15px;
   }
   nav :global(.navbar-brand>img) {
-    padding: 12px 0px 0px 0px;
+    height: 70%;
+    padding-top: 0px;
     width: auto;
     margin: 0 auto;
-    height: 39px;
+    display: block;
   }
   nav :global(.navbar-link) {
     color: white;
     border-bottom: none;
-    font-size: 20px;
+    font-size: 15px;
   }
   @media (min-width: 768px) {
     nav :global(.navbar-brand>img) {
       height: 100%;
       padding-top: 6px;
-      width: auto;
-      margin: 0 auto;
+      display: inline-block;
+    }
+    nav :global(.navbar-brand>span) {
+    padding-left: 18px;
+    }
+    nav :global(.navbar-link) {
+      font-size: 20px;
     }
   }
 }
