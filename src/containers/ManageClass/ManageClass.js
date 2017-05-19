@@ -16,6 +16,7 @@ export default class ManageClass extends Component {
   }
 
   open = () => {
+    console.log('2343242342');
     this.props.showModalFunc(true);
   }
 
@@ -29,7 +30,7 @@ export default class ManageClass extends Component {
           bsSize="large"
           onClick={this.open}
         >
-          Add A New Student
+          Add to Class Roster
         </Button>
         <ClassForm />
         <div className={styles.divTable}>

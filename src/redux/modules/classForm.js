@@ -110,6 +110,7 @@ export function load() {
 
 export function addStudent(email, github, firstname, lastname, notes) {
   console.log('ADD STUDENTS!!!***************');
+  console.log(email, github, firstname, lastname, notes);
   return {
     types: [SAVE, SAVE_SUCCESS, SAVE_FAIL],
     promise: (client) => client.post('/postClassForm', {
