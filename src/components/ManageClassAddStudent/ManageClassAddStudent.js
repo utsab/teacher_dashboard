@@ -38,6 +38,7 @@ export default class ManageClassAddStudent extends Component {
   handleClick = (event) => {
     event.preventDefault();
     const studentID = event.currentTarget.attributes['data-id'].value;
+    console.log(studentID);
     this.open();
     this.props.isEditClicked(studentID);
   };

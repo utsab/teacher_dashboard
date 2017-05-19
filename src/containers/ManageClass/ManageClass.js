@@ -17,6 +17,7 @@ export default class ManageClass extends Component {
   }
 
   open = () => {
+    console.log('2343242342');
     this.props.showModalFunc(true);
   }
 
@@ -24,12 +25,26 @@ export default class ManageClass extends Component {
     const styles = require('./ManageClass.scss');
     return (
       <div className={styles.manageClass}>
-        <div className={styles.addStudent}>
-          <Button bsStyle="primary" onClick={this.open}>
-            Add to Class Roster
-          </Button>
-          <p className={styles.numStudents}>{this.props.studentList.length} students</p>
-          <ClassForm />
+        <h1>Manage Students</h1>
+        <Button
+          bsStyle="primary"
+          bsSize="large"
+          onClick={this.open}
+        >
+          Add to Class Roster
+        </Button>
+        <ClassForm />
+        <div className={styles.divTable}>
+          <div className={styles.divTableBody}>
+            <div className={styles.divTableRow}>
+              <div className={styles.divTableCellHeader}>First Name</div>
+              <div className={styles.divTableCellHeader}>Last Name</div>
+              <div className={styles.divTableCellHeader}>Github</div>
+              <div className={styles.divTableCellHeader}>Email</div>
+              <div className={styles.divTableCellHeader}>Notes</div>
+              <div className={styles.divTableCellHeader}></div>
+            </div>
+          </div>
         </div>
 
         <Table responsive>
@@ -51,4 +66,3 @@ export default class ManageClass extends Component {
     );
   }
 }
-
