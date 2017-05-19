@@ -7,23 +7,26 @@
     margin-bottom: 10px;
     border-bottom: none;
   }
-  nav :global(.navbar-brand>span) {
+  nav :global(.navbar-brand > span) {
     color: white;
     padding-left: 10px;
     display: inline-block;
     font-size: 15px;
   }
-  nav :global(.navbar-brand>img) {
+  nav :global(.navbar-brand > img) {
     height: 70%;
     padding-top: 0px;
     width: auto;
     margin: 0 auto;
     display: block;
   }
-  nav :global(.navbar-link) {
+  :global(.navbar-nav > li > a) {
     color: white;
     border-bottom: none;
     font-size: 15px;
+  }
+  :global(.navbar-nav > li > a:hover) {
+    color: #ccc;
   }
   @media (min-width: 768px) {
     nav :global(.navbar-brand>img) {
@@ -34,11 +37,22 @@
     nav :global(.navbar-brand>span) {
     padding-left: 18px;
     }
-    nav :global(.navbar-link) {
+    nav :global(a) {
       font-size: 20px;
     }
-    nav :global(li) {
-      float: right;
+    nav :global(.logout-link) {
+      position: relative;
+      left: 550px;
+    }
+  }
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    nav :global(.logout-link) {
+      position: relative;
+      left: 200px;
     }
   }
 }

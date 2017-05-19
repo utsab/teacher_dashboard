@@ -1,0 +1,39 @@
+.appForm {  
+  .modalTitle {
+    text-align: center;
+    text-transform: uppercase;
+    color: #888;
+    font-size: 20px;
+    font-weight: 200;
+    padding-top: 10px;
+  }
+  .modalHeader {
+    border-bottom: none;
+  }
+  form:global(.form-horizontal .control-label) {
+    text-align: justify;
+    padding-left: 40px;
+  }
+  :global(.form-control) {
+    border: 1px solid black;
+    height: 100%;
+    padding: 4px;
+    margin-top: 10px;
+  }
+  .submitButton {
+    background-color: darkgreen;
+    border-radius: 0px;
+    padding: 5px 17px 5px 17px;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    float: right;
+  }
+  .cancelButton {
+    border-radius: 0px;
+    padding: 5px 17px 5px 17px;
+    color: #888;
+    text-transform: uppercase;
+    border: none;
+  }
+}
