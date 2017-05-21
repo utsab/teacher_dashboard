@@ -6,6 +6,8 @@ var studentsSchema = new mongoose.Schema({
   githubUsername: String,
   email: String,
   notes: String,
+  lastSubmittedAssignment: String,
+  daysInactive: String,
   teacher: {type: mongoose.Schema.Types.ObjectId, ref:'Teachers'}
 });
 

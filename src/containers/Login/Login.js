@@ -49,22 +49,25 @@ export default class Login extends Component {
     const {user, logout, error, key} = this.props;
     const styles = require('./Login.scss');
     return (
-      <div>
-        <Tabs activeKey={key} onClick={this.handleSelect} id="controlled-tab-example">
+      <div className={styles.loginPage + ' container'}>
+        <Tabs activeKey={key} onChange={this.handleSelect} id="controlled-tab-example" className={styles.tabContainer}>
             <Tab eventKey={1} title="Sign Up">
-              <div className={styles.loginPage + ' container'}>
+              <div>
                 <Helmet title="Sign Up"/>
-                <h1>Sign Up</h1>
                 {!user &&
-                <div>
+                <div className={styles.formContainer}>
                   <form className="login-form form-inline" onSubmit={this.handleSubmit}>
                     <div className="form-group">
+                      <p>Name</p>
                       <input type="text" ref="signupName" placeholder="Name" className="form-control"/><br/>
+                      <p>Username</p>
                       <input type="text" ref="signupUsername" placeholder="Username" className="form-control"/><br/>
+                      <p>Email</p>
                       <input type="text" ref="signupEmail" placeholder="Email" className="form-control"/><br/>
+                      <p>Password</p>
                       <input type="password" ref="signupPassword" placeholder="Password" className="form-control"/><br/>
                     </div><br/>
-                    <button className="btn btn-success" onClick={this.handleSignupSubmit}><i className="fa fa-sign-in"/>{' '}Sign Up
+                    <button className="btn" onClick={this.handleSignupSubmit}>{' '}Sign Up
                     </button>
                   </form>
                 </div>
@@ -82,17 +85,18 @@ export default class Login extends Component {
             </Tab>
 
             <Tab eventKey={2} title="Login">
-              <div className={styles.loginPage + ' container'}>
+              <div>
                 <Helmet title="Login"/>
-                <h1>Login</h1>
                 {!user &&
-                <div>
+                <div className={styles.formContainer}>
                   <form className="login-form form-inline" onSubmit={this.handleSubmit}>
                     <div className="form-group">
+                      <p>FCC Dashboard Login</p>
                       <input type="text" ref="loginEmail" placeholder="Email" className="form-control"/><br/>
+                      <p>Password</p>
                       <input type="password" ref="loginPassword" placeholder="Password" className="form-control"/><br/>
                     </div><br/>
-                    <button className="btn btn-success" onClick={this.handleLoginSubmit}><i className="fa fa-sign-in"/>{' '}Login
+                    <button className="btn" onClick={this.handleLoginSubmit}>{' '}Login
                     </button>
                   </form>
                   {error &&

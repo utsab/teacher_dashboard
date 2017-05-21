@@ -1,45 +1,47 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {addStudent, showModalFunc} from 'redux/modules/classForm';
+import {editAStudent, showModalFuncEdit} from 'redux/modules/classForm';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 
 function mapStateToProps(state) {
   return {
-    studentList: state.classForm.studentList,
-    showModal: state.classForm.showModal
+    showModal: state.classForm.editShowModal,
+    studentList: state.classForm.studentList
   };
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({addStudent: addStudent, showModalFunc: showModalFunc}, dispatch);
+  return bindActionCreators({editAStudent: editAStudent, showModalFuncEdit: showModalFuncEdit}, dispatch);
 }
 
 @connect(mapStateToProps, matchDispatchToProps)
 
-export default class ClassForm extends Component {
+export default class EditStudent extends Component {
   static propTypes = {
-    addStudent: PropTypes.func.isRequired,
+    editAStudent: PropTypes.func.isRequired,
     dispatch: PropTypes.func,
     showModal: PropTypes.bool,
     close: PropTypes.func,
-    showModalFunc: PropTypes.func
+    id: PropTypes.string,
+    showModalFuncEdit: PropTypes.func,
+    studentId: PropTypes.string
   }
 
   onSubmitForm = (event) => {
     this.close();
-    this.addNewStudent(event);
+    this.editStudent(event);
   }
 
-  addNewStudent = (event) => {
+  editStudent = (event) => {
     event.preventDefault();
     const studentEmail = this.refs.studentEmail;
     const github = this.refs.github;
     const firstname = this.refs.firstname;
     const lastname = this.refs.lastname;
     const notes = this.refs.notes;
-    this.props.addStudent(studentEmail.value, github.value, firstname.value, lastname.value, notes.value);
+    this.props.editAStudent(studentEmail.value, github.value, firstname.value, lastname.value, notes.value, this.props.studentId);
     studentEmail.value = '';
     github.value = '';
     firstname.value = '';
@@ -48,7 +50,7 @@ export default class ClassForm extends Component {
   }
 
   close = () => {
-    this.props.showModalFunc(false);
+    this.props.showModalFuncEdit(false);
   }
 
   render() {
@@ -56,7 +58,7 @@ export default class ClassForm extends Component {
     return (
       <Modal show={this.props.showModal} onHide={this.close}>
         <Modal.Header closeButton>
-          <Modal.Title>Add New Student</Modal.Title>
+          <Modal.Title>Edit Student</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <div className={styles.backdropStyle}>
