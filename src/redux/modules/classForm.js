@@ -24,6 +24,7 @@ export default function classForm(state = initialState, action = {}) {
         loading: true
       };
     case LOAD_SUCCESS:
+      console.log(action.result);
       return {
         ...state,
         loading: false,
@@ -153,4 +154,3 @@ export function showModalFuncEdit(showModalBool) {
 export function showModalFunc(showModalBool) {
   return { type: SHOW_MODAL, showModalBool };
 }
-

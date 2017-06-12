@@ -10,6 +10,7 @@ function mapStateToProps(state) {
   return {
     studentId: state.classForm.studentId,
     showModal: state.classForm.showModal,
+    showEditModal: state.classForm.showEditModal,
     studentList: state.classForm.studentList
   };
 }
@@ -28,6 +29,7 @@ export default class ManageClassAddStudent extends Component {
     handleClick: PropTypes.func,
     studentId: PropTypes.string,
     showModal: PropTypes.bool,
+    showEditModal: PropTypes.bool,
     showModalFuncEdit: PropTypes.func
   }
 
@@ -47,27 +49,23 @@ export default class ManageClassAddStudent extends Component {
 
   render() {
     const overlay = this.props.studentId ? <EditStudent studentId={this.props.studentId} /> : null;
-    const styles = require('containers/ManageClass/ManageClass.scss');
 
     const allStudents = this.props.arrayStudents.map(function returnArray(student) {
       return (
-        <div className={styles.divTableRow}>
-          <div className={styles.divTableCell}>{student.firstName}</div>
-          <div className={styles.divTableCell}>{student.lastName}</div>
-          <div className={styles.divTableCell}>{student.githubUsername}</div>
-          <div className={styles.divTableCell}>{student.email}</div>
-          <div className={styles.divTableCell}>{student.notes}</div>
-          <div className={styles.divTableCellHeader}><Button data-id={student._id} onClick={this.handleClick}>Edit</Button></div>
-        </div>
+        <tr>
+          <td>{student.firstName}</td>
+          <td>{student.lastName}</td>
+          <td>{student.githubUsername}</td>
+          <td>{student.email}</td>
+          <td>{student.notes} <Button data-id={student._id} onClick={this.handleClick}>Edit</Button><i className="fa fa-minus-circle" aria-hidden="true"></i></td>
+        </tr>
       );
     }, this);
     return (
-      <div className={styles.divTable}>
-      {overlay}
-        <div className={styles.divTableBody}>
-            {allStudents}
-        </div>
-      </div>
+      <tbody>
+        {overlay}
+        {allStudents}
+      </tbody>
     );
   }
 }

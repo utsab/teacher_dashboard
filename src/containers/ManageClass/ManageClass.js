@@ -3,6 +3,7 @@ import { ManageClassAddStudent, ClassForm } from 'components';
 import {connect} from 'react-redux';
 import * as classActions from 'redux/modules/classForm';
 import Button from 'react-bootstrap/lib/Button';
+import Table from 'react-bootstrap/lib/Table';
 
 @connect(
   state => ({studentList: state.classForm.studentList, showModal: state.classForm.showModal}),
@@ -33,21 +34,20 @@ export default class ManageClass extends Component {
           Add to Class Roster
         </Button>
         <ClassForm />
-        <div className={styles.divTable}>
-          <div className={styles.divTableBody}>
-            <div className={styles.divTableRow}>
-              <div className={styles.divTableCellHeader}>First Name</div>
-              <div className={styles.divTableCellHeader}>Last Name</div>
-              <div className={styles.divTableCellHeader}>Github</div>
-              <div className={styles.divTableCellHeader}>Email</div>
-              <div className={styles.divTableCellHeader}>Notes</div>
-              <div className={styles.divTableCellHeader}></div>
-            </div>
-          </div>
-        </div>
-        <ManageClassAddStudent arrayStudents={this.props.studentList} />
-      </div>
 
+        <Table responsive bordered condensed hover>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Github</th>
+              <th>Date Enrolled</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <ManageClassAddStudent arrayStudents={this.props.studentList} />
+        </Table>
+      </div>
     );
   }
 }
