@@ -7,8 +7,9 @@ import Button from 'react-bootstrap/lib/Button';
 
 function mapStateToProps(state) {
   return {
-    showModal: state.classForm.showModal,
-    studentList: state.classForm.studentList
+    showEditModal: state.classForm.showEditModal,
+    studentList: state.classForm.studentList,
+    studentId: state.classForm.studentId,
   };
 }
 
@@ -22,11 +23,13 @@ export default class EditStudent extends Component {
   static propTypes = {
     editAStudent: PropTypes.func.isRequired,
     dispatch: PropTypes.func,
-    showModal: PropTypes.bool,
+    showEditModal: PropTypes.bool,
     close: PropTypes.func,
     id: PropTypes.string,
     showModalFuncEdit: PropTypes.func,
-    studentId: PropTypes.string
+    studentId: PropTypes.string,
+    studentList: PropTypes.array,
+    value: PropTypes.string
   }
 
   onSubmitForm = (event) => {
@@ -55,8 +58,16 @@ export default class EditStudent extends Component {
 
   render() {
     const styles = require('containers/ManageClass/ManageClass.scss');
+    const studentId = this.props.studentId;
+    const findStudent = () => {
+      for (let element = 0; element <= this.props.studentList.length; element++) {
+        if (this.props.studentList[element]._id === studentId) {
+          return this.props.studentList[element];
+        }
+      }
+    };
     return (
-      <Modal show={this.props.showModal} onHide={this.close}>
+      <Modal show={this.props.showEditModal} onHide={this.close}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Student</Modal.Title>
         </Modal.Header>
@@ -65,19 +76,19 @@ export default class EditStudent extends Component {
           <div className={styles.modalStyle}>
             <form>
               First name<br/>
-              <input type="text" ref="firstname" className="form-control"/>
+              <input type="text" ref="firstname" className="form-control" defaultValue={findStudent().firstName} />
               <br/>
               Last name<br/>
-              <input type="text" ref="lastname" className="form-control"/>
+              <input type="text" ref="lastname" className="form-control" defaultValue={findStudent().lastName}/>
               <br/>
               Student Email<br/>
-              <input type="text" ref="studentEmail" className="form-control"/>
+              <input type="text" ref="studentEmail" className="form-control" defaultValue={findStudent().email}/>
               <br/>
               Github Username<br/>
-              <input type="text" ref="github" className="form-control"/>
+              <input type="text" ref="github" className="form-control" defaultValue={findStudent().githubUsername}/>
               <br/>
               Notes<br/>
-              <input type="text" ref="notes" className="form-control"/>
+              <input type="text" ref="notes" className="form-control" defaultValue={findStudent().notes}/>
               <br/>
               <br/>
               <input onClick={this.onSubmitForm} type="submit" value="Submit"/>
