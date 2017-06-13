@@ -43,7 +43,7 @@ export default class ManageClass extends Component {
               <th>Contact Email</th>
               <th>Github</th>
               <th>Date Enrolled</th>
-              <th>Note</th>
+              <th>Notes</th>
               <th></th>
               <th></th>
             </tr>

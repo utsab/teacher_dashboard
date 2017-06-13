@@ -14,7 +14,7 @@ const SAVE_DELETE = 'redux-example/student/SAVE_DELETE';
 const SAVE_SUCCESS_DELETE = 'redux-example/student/SAVE_SUCCESS_DELETE';
 const SAVE_FAIL_DELETE = 'redux-example/student/SAVE_FAIL_DELETE';
 const LOAD_DASHBOARD = 'redux-example/student/LOAD';
-const LOAD_SUCCESS_DASHBOARD = 'redux-example/student/LOAD_SUCCESS';
+const LOAD_SUCCESS_DASHBOARD = 'redux-example/student/LOA D_SUCCESS';
 const LOAD_FAIL_DASHBOARD = 'redux-example/student/LOAD_FAIL';
 
 const initialState = {
