@@ -8,3 +8,4 @@ export postClassForm from './postClassForm';
 export loadClass from './loadClass';
 export loadDashboard from './loadDashboard';
 export editClassForm from './editClassForm';
+export deleteStudent from './deleteStudent';

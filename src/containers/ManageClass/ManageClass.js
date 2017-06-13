@@ -42,7 +42,9 @@ export default class ManageClass extends Component {
               <th>Last Name</th>
               <th>Github</th>
               <th>Date Enrolled</th>
-              <th>Note</th>
+              <th>Notes</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <ManageClassAddStudent arrayStudents={this.props.studentList} />
