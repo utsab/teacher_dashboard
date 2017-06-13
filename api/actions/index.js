@@ -9,5 +9,6 @@ export postClassForm from './postClassForm';
 export loadClass from './loadClass';
 export loadDashboard from './loadDashboard';
 export editClassForm from './editClassForm';
+export deleteStudent from './deleteStudent';
 export * as widget from './widget/index';
 export * as survey from './survey/index';

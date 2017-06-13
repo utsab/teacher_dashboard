@@ -10,6 +10,9 @@ const SAVE_FAIL_EDIT = 'redux-example/student/SAVE_FAIL_EDIT';
 const EDIT_STUDENT = 'redux-example/student/EDIT_STUDENT';
 const SHOW_EDIT_MODAL = 'redux-example/student/SHOW_EDIT_MODAL';
 const SHOW_MODAL = 'redux-example/student/SHOW_MODAL';
+const SAVE_DELETE = 'redux-example/student/SAVE_DELETE';
+const SAVE_SUCCESS_DELETE = 'redux-example/student/SAVE_SUCCESS_DELETE';
+const SAVE_FAIL_DELETE = 'redux-example/student/SAVE_FAIL_DELETE';
 
 const initialState = {
   loaded: false,
@@ -70,6 +73,27 @@ export default function classForm(state = initialState, action = {}) {
         studentList: action.result
       };
     case SAVE_FAIL_EDIT:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: action.error
+      };
+    case SAVE_DELETE:
+      return {
+        ...state,
+        loading: true
+      };
+    case SAVE_SUCCESS_DELETE:
+      console.log(action.result);
+      console.log('DELETE!!!!!!!!SUCCESS');
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        studentList: action.result
+      };
+    case SAVE_FAIL_DELETE:
       return {
         ...state,
         loading: false,
@@ -143,6 +167,18 @@ export function editAStudent(email, github, firstname, lastname, notes, id) {
   };
 }
 
+export function deleteStudent(id) {
+  console.log('DELETE STUDENT FUNCTION');
+  return {
+    types: [SAVE_DELETE, SAVE_SUCCESS_DELETE, SAVE_FAIL_DELETE],
+    promise: (client) => client.post('/deleteStudent', {
+      data: {
+        id: id
+      }
+    })
+  };
+}
+
 export function isEditClicked(id) {
   return { type: EDIT_STUDENT, id };
 }
@@ -154,3 +190,5 @@ export function showModalFuncEdit(showModalBool) {
 export function showModalFunc(showModalBool) {
   return { type: SHOW_MODAL, showModalBool };
 }
+
+

@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {isEditClicked, showModalFuncEdit} from 'redux/modules/classForm';
+import {isEditClicked, showModalFuncEdit, deleteStudent} from 'redux/modules/classForm';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {EditStudent} from 'components';
@@ -16,7 +16,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({isEditClicked: isEditClicked, showModalFuncEdit: showModalFuncEdit}, dispatch);
+  return bindActionCreators({isEditClicked: isEditClicked, showModalFuncEdit: showModalFuncEdit, deleteStudent: deleteStudent}, dispatch);
 }
 
 @connect(mapStateToProps, matchDispatchToProps)
@@ -30,17 +30,23 @@ export default class ManageClassAddStudent extends Component {
     studentId: PropTypes.string,
     showModal: PropTypes.bool,
     showEditModal: PropTypes.bool,
-    showModalFuncEdit: PropTypes.func
+    showModalFuncEdit: PropTypes.func,
+    deleteStudent: PropTypes.func,
+    studentList: PropTypes.array
   }
 
   handleClick = (event) => {
-    console.log('IN HANDLE Click EDIT');
     event.preventDefault();
     const studentID = event.currentTarget.attributes['data-id'].value;
-    console.log(studentID);
     this.open();
     this.props.isEditClicked(studentID);
   };
+
+  deleteClick = (event) => {
+    event.preventDefault();
+    const studentID = event.currentTarget.attributes['data-id'].value;
+    this.props.deleteStudent(studentID);
+  }
 
   open = () => {
     console.log('in open func');
@@ -57,7 +63,9 @@ export default class ManageClassAddStudent extends Component {
           <td>{student.lastName}</td>
           <td>{student.githubUsername}</td>
           <td>{student.email}</td>
-          <td>{student.notes} <Button data-id={student._id} onClick={this.handleClick}>Edit</Button><i className="fa fa-minus-circle" aria-hidden="true"></i></td>
+          <td>{student.notes}</td>
+          <td><Button data-id={student._id} onClick={this.handleClick}>Edit</Button></td>
+          <td><i onClick={this.deleteClick} data-id={student._id} className="fa fa-minus-circle" aria-hidden="true"></i></td>
         </tr>
       );
     }, this);
