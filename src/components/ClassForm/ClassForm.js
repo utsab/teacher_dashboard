@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/lib/Button';
 function mapStateToProps(state) {
   return {
     studentList: state.classForm.studentList,
+    errors: state.classForm.error,
     showModal: state.classForm.showModal
   };
 }
@@ -24,7 +25,8 @@ export default class ClassForm extends Component {
     dispatch: PropTypes.func,
     showModal: PropTypes.bool,
     close: PropTypes.func,
-    showModalFunc: PropTypes.func
+    showModalFunc: PropTypes.func,
+    errors: PropTypes.array
   }
 
   onSubmitForm = (event) => {
@@ -61,6 +63,11 @@ export default class ClassForm extends Component {
         <Modal.Body>
         <div className={styles.backdropStyle}>
           <div className={styles.modalStyle}>
+            <ul>
+              {this.props.errors.map(function test(error) {
+                return <li>{error}</li>;
+              })}
+            </ul>
             <form>
               First name<br/>
               <input type="text" ref="firstname" className="form-control"/>
