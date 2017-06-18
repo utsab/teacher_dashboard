@@ -47,9 +47,12 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        studentList: action.result
+        studentList: action.result,
+        error: null
       };
     case SAVE_FAIL:
+      console.log('In classForm reducer: save failed!!!!!!!!!!!!!');
+
       return {
         ...state,
         loading: false,

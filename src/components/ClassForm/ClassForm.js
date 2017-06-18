@@ -56,7 +56,7 @@ export default class ClassForm extends Component {
   render() {
     const styles = require('containers/ManageClass/ManageClass.scss');
     return (
-      <Modal show={this.props.showModal} onHide={this.close}>
+      <Modal show={this.props.showModal || this.props.errors} onHide={this.close}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Student</Modal.Title>
         </Modal.Header>
@@ -64,7 +64,7 @@ export default class ClassForm extends Component {
         <div className={styles.backdropStyle}>
           <div className={styles.modalStyle}>
             <ul>
-              {this.props.errors.map(function test(error) {
+              {this.props.errors && this.props.errors.map(function test(error) {
                 return <li>{error}</li>;
               })}
             </ul>
