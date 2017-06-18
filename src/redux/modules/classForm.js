@@ -89,7 +89,12 @@ export default function classForm(state = initialState, action = {}) {
       console.log(action.id);
       return {
         ...state,
-        studentId: action.id
+        studentId: action.id,
+        firstName: action.firstName,
+        lastName: action.lastName,
+        github: action.github,
+        email: action.email,
+        notes: action.notes
       };
     case SHOW_EDIT_MODAL:
       return {
@@ -146,8 +151,8 @@ export function editAStudent(email, github, firstname, lastname, notes, id) {
   };
 }
 
-export function isEditClicked(id) {
-  return { type: EDIT_STUDENT, id };
+export function isEditClicked(id, firstName, lastName, github, email, notes) {
+  return { type: EDIT_STUDENT, id, firstName, lastName, github, email, notes};
 }
 
 export function showModalFuncEdit(showModalBool) {
