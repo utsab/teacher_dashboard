@@ -81,6 +81,7 @@ export default function classForm(state = initialState, action = {}) {
     case SHOW_MODAL:
       return {
         ...state,
+        error: null,
         showModal: action.showModalBool
       };
     case EDIT_STUDENT:
@@ -93,6 +94,7 @@ export default function classForm(state = initialState, action = {}) {
     case SHOW_EDIT_MODAL:
       return {
         ...state,
+        error: null,
         showModal: action.showModalBool
       };
     default:
