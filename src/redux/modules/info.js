@@ -3,7 +3,7 @@ const LOAD_SUCCESS = 'redux-example/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/LOAD_FAIL';
 
 const initialState = {
-  loaded: false
+  loaded: false,
 };
 
 export default function info(state = initialState, action = {}) {
@@ -33,10 +33,13 @@ export default function info(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
+  console.log(globalState.info);
+  console.log('globalState.info');
   return globalState.info && globalState.info.loaded;
 }
 
 export function load() {
+  console.log('in load function!');
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/loadInfo')

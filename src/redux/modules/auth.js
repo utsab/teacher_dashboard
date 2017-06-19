@@ -4,9 +4,16 @@ const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
 const LOGIN = 'redux-example/auth/LOGIN';
 const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
 const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
+
+const SIGNUP = 'redux-example/auth/SIGNUP';
+const SIGNUP_SUCCESS = 'redux-example/auth/SIGNUP_SUCCESS';
+const SIGNUP_FAIL = 'redux-example/auth/SIGNUP_FAIL';
+
 const LOGOUT = 'redux-example/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
+
+const GET_KEY = 'redux-example/auth/GET_KEY';
 
 const initialState = {
   loaded: false
@@ -42,9 +49,28 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggingIn: false,
-        user: action.result
+        user: action.result,
+        loginError: false
       };
     case LOGIN_FAIL:
+      return {
+        ...state,
+        loggingIn: false,
+        user: null,
+        loginError: action.error
+      };
+    case SIGNUP:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        loggingIn: false,
+        user: action.result
+      };
+    case SIGNUP_FAIL:
       return {
         ...state,
         loggingIn: false,
@@ -54,7 +80,7 @@ export default function reducer(state = initialState, action = {}) {
     case LOGOUT:
       return {
         ...state,
-        loggingOut: true
+        loggingOut: true,
       };
     case LOGOUT_SUCCESS:
       return {
@@ -67,6 +93,13 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loggingOut: false,
         logoutError: action.error
+      };
+    case GET_KEY:
+      console.log(action.newKey);
+      console.log('HELLO!!!');
+      return {
+        ...state,
+        key: action.newKey
       };
     default:
       return state;
@@ -84,12 +117,31 @@ export function load() {
   };
 }
 
-export function login(name) {
+export function setKey(newKey) {
+  return { type: GET_KEY, newKey };
+}
+
+export function signup(name, username, email, password) {
+  return {
+    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+    promise: (client) => client.post('/signup', {
+      data: {
+        name: name,
+        username: username,
+        email: email,
+        password: password
+      }
+    })
+  };
+}
+
+export function login(email, password) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => client.post('/login', {
       data: {
-        name: name
+        email: email,
+        password: password
       }
     })
   };
