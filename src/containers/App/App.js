@@ -104,9 +104,6 @@ export default class App extends Component {
                     {user && <LinkContainer to="/widgets">
                       <NavItem eventKey={2} className="hidden-sm hidden-md hidden-lg">Widgets</NavItem>
                     </LinkContainer>}
-                    {user && <LinkContainer to="/survey">
-                      <NavItem eventKey={3} className="hidden-sm hidden-md hidden-lg">Survey</NavItem>
-                    </LinkContainer>}
                     {user && <LinkContainer to="/pagination">
                       <NavItem eventKey={4} className="hidden-sm hidden-md hidden-lg">Pagination</NavItem>
                     </LinkContainer>}
@@ -135,9 +132,6 @@ export default class App extends Component {
                     </LinkContainer>}
                     {user && <LinkContainer to="/widgets">
                       <NavItem eventKey={2}>Widgets</NavItem>
-                    </LinkContainer>}
-                    {user && <LinkContainer to="/survey">
-                      <NavItem eventKey={3}>Survey</NavItem>
                     </LinkContainer>}
                     {user && <LinkContainer to="/pagination">
                       <NavItem eventKey={4}>Pagination</NavItem>

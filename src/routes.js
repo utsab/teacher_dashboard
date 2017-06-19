@@ -8,7 +8,6 @@ import {
     Widgets,
     Login,
     LoginSuccess,
-    Survey,
     NotFound,
     Pagination,
     ManageClass
@@ -44,7 +43,6 @@ export default (store) => {
       <Route onEnter={requireLogin}>
         <Route path="chat" component={Chat}/>
         <Route path="pagination" component={Pagination}/>
-        <Route path="survey" component={Survey}/>
         <Route path="widgets" component={Widgets}/>
         <Route path="loginSuccess" component={LoginSuccess}/>
         <Route path="manageClass" component={ManageClass}/>
