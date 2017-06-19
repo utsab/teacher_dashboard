@@ -6,7 +6,6 @@ import {
     Chat,
     Home,
     Widgets,
-    About,
     Login,
     LoginSuccess,
     Survey,
@@ -43,7 +42,6 @@ export default (store) => {
 
       { /* Routes requiring login */ }
       <Route onEnter={requireLogin}>
-        <Route path="about" component={About}/>
         <Route path="chat" component={Chat}/>
         <Route path="pagination" component={Pagination}/>
         <Route path="survey" component={Survey}/>

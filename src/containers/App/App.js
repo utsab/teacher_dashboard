@@ -110,9 +110,6 @@ export default class App extends Component {
                     {user && <LinkContainer to="/pagination">
                       <NavItem eventKey={4} className="hidden-sm hidden-md hidden-lg">Pagination</NavItem>
                     </LinkContainer>}
-                    {user && <LinkContainer to="/about">
-                      <NavItem eventKey={5} className="hidden-sm hidden-md hidden-lg">About Us</NavItem>
-                    </LinkContainer>}
                     {user && <LinkContainer to="/logout">
                       <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
                         Logout
@@ -144,9 +141,6 @@ export default class App extends Component {
                     </LinkContainer>}
                     {user && <LinkContainer to="/pagination">
                       <NavItem eventKey={4}>Pagination</NavItem>
-                    </LinkContainer>}
-                    {user && <LinkContainer to="/about">
-                      <NavItem eventKey={5}>About Us</NavItem>
                     </LinkContainer>}
                   </Nav>
                 </Navbar.Collapse>
