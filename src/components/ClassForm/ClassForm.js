@@ -14,7 +14,10 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({addStudent: addStudent, showModalFunc: showModalFunc}, dispatch);
+  return bindActionCreators({
+    addStudent: addStudent,
+    showModalFunc: showModalFunc
+  }, dispatch);
 }
 
 @connect(mapStateToProps, matchDispatchToProps)

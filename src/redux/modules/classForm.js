@@ -67,6 +67,12 @@ export default function classForm(state = initialState, action = {}) {
     case SAVE_SUCCESS_EDIT:
       return {
         ...state,
+        studentId: null,
+        firstName: null,
+        lastName: null,
+        github: null,
+        email: null,
+        notes: null,
         loading: false,
         loaded: false,
         studentList: action.result
