@@ -75,7 +75,8 @@ export default function classForm(state = initialState, action = {}) {
         notes: null,
         loading: false,
         loaded: false,
-        studentList: action.result
+        studentList: action.result,
+        error: null
       };
     case SAVE_FAIL_EDIT:
       return {

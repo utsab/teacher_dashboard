@@ -2,6 +2,30 @@ var mongoose = require('mongoose'); //mongo connection
 
 	export default function editClassForm(req, err,model) {
 		return new Promise((resolve,reject) => {
+
+			var errors = []; 
+
+			if (!req.body.email) {
+	 			errors.push("Please enter a valid email"); 
+	 		}
+	 		if (!req.body.github) {
+	 			errors.push("Please enter a valid github username"); 
+	 		}
+	 		if (!req.body.firstname) {
+	 			errors.push("Please enter a valid firstname"); 
+	 		}
+	 		if (!req.body.lastname) {
+	 			errors.push("Please enter a valid lastname"); 
+	 		}
+
+
+	 		if ( errors.length > 0 ) {
+	 			console.log("Found " + errors.length + " form validation error(s)"); 
+	 			throw errors;
+	 			reject();
+	 		}
+			 		
+			 		
 	 		var Student = model.students;
 	 		var Teacher = model.teachers;
 

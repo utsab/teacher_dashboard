@@ -13,7 +13,8 @@ function mapStateToProps(state) {
     lastName: state.classForm.lastName,
     github: state.classForm.github,
     email: state.classForm.email,
-    notes: state.classForm.notes
+    notes: state.classForm.notes,
+    errors: state.classForm.error,
   };
 }
 
@@ -36,7 +37,8 @@ export default class EditStudent extends Component {
     email: PropTypes.string,
     notes: PropTypes.string,
     showModalFuncEdit: PropTypes.func,
-    studentId: PropTypes.string
+    studentId: PropTypes.string,
+    errors: PropTypes.array
   }
 
   onSubmitForm = (event) => {
@@ -63,6 +65,11 @@ export default class EditStudent extends Component {
     this.props.showModalFuncEdit(false);
   }
 
+  handleChangeFirstName(event) {
+    debugger;
+    this.props.firstName = event.target.value;
+  }
+
   render() {
     const styles = require('containers/ManageClass/ManageClass.scss');
 
@@ -74,21 +81,27 @@ export default class EditStudent extends Component {
         <Modal.Body>
         <div className={styles.backdropStyle}>
           <div className={styles.modalStyle}>
-            <form>
+            <ul>
+              {this.props.errors && this.props.errors.map(function test(error) {
+                return <li>{error}</li>;
+              })}
+            </ul>
+
+            <form >
               First name<br/>
-              <input type="text" ref="firstname" className="form-control" value={this.props.firstName}/>
+              <input type="text" ref="firstname" className="form-control" value={this.props.firstName} onChange={this.handleChangeFirstName.bind(this)}/>
               <br/>
               Last name<br/>
-              <input type="text" ref="lastname" className="form-control" value={this.props.lastName}/>
+              <input type="text" ref="lastname" className="form-control" value={this.props.lastName} />
               <br/>
               Student Email<br/>
-              <input type="text" ref="studentEmail" className="form-control" value={this.props.email}/>
+              <input type="text" ref="studentEmail" className="form-control" value={this.props.email} />
               <br/>
               Github Username<br/>
-              <input type="text" ref="github" className="form-control" value={this.props.github}/>
+              <input type="text" ref="github" className="form-control" value={this.props.github} />
               <br/>
               Notes<br/>
-              <input type="text" ref="notes" className="form-control" value={this.props.notes}/>
+              <input type="text" ref="notes" className="form-control" value={this.props.notes} />
               <br/>
               <br/>
               <input onClick={this.onSubmitForm} type="submit" value="Submit"/>
