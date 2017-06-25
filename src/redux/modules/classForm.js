@@ -13,6 +13,9 @@ const SHOW_MODAL = 'redux-example/student/SHOW_MODAL';
 const SAVE_DELETE = 'redux-example/student/SAVE_DELETE';
 const SAVE_SUCCESS_DELETE = 'redux-example/student/SAVE_SUCCESS_DELETE';
 const SAVE_FAIL_DELETE = 'redux-example/student/SAVE_FAIL_DELETE';
+const LOAD_DASHBOARD = 'redux-example/student/LOAD';
+const LOAD_SUCCESS_DASHBOARD = 'redux-example/student/LOAD_SUCCESS';
+const LOAD_FAIL_DASHBOARD = 'redux-example/student/LOAD_FAIL';
 
 const initialState = {
   loaded: false,
@@ -117,6 +120,28 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         editShowModal: action.showModalBool
       };
+    case LOAD_DASHBOARD:
+      console.log('dashbaord load');
+      return {
+        ...state,
+        loading: true
+      };
+    case LOAD_SUCCESS_DASHBOARD:
+      console.log('load success dashboard!!!!!');
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        studentList: action.result
+      };
+    case LOAD_FAIL_DASHBOARD:
+      console.log('dashbaord load fail');
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: action.error
+      };
     default:
       return state;
   }
@@ -191,4 +216,10 @@ export function showModalFunc(showModalBool) {
   return { type: SHOW_MODAL, showModalBool };
 }
 
+export function loadDashboard() {
+  return {
+    types: [LOAD_DASHBOARD, LOAD_SUCCESS_DASHBOARD, LOAD_FAIL_DASHBOARD],
+    promise: (client) => client.get('/loadDashboard')
+  };
+}
 

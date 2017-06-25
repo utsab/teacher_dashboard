@@ -15,9 +15,23 @@ var mongoose = require('mongoose'); //mongo connection
 		        notes: req.body.notes
 			};
 
+			function getDate() {
+			    var today = new Date();
+			    var dd = today.getDate();
+			    var mm = today.getMonth()+1; //January is 0!
+			    var yyyy = today.getFullYear();
+			    if(dd < 10){
+			    	dd ='0' + dd;
+			    } 
+			    if(mm < 10){
+			    	mm ='0' + mm;
+			    }
+			    today = mm + "-" + dd + "-" + yyyy;
+			    return today;
+			}
 
 			Teacher.findOne({ 'email': teacherEmail }, function (err, person) {
-				Student.create({ firstName: student.firstname, lastName: student.lastname, githubUsername: student.github, email: student.email, notes: student.notes, teacher: person._id }, function (err, createdUser) {
+				Student.create({ firstName: student.firstname, lastName: student.lastname, githubUsername: student.github, email: student.email, notes: student.notes, dateEnrolled: getDate(), teacher: person._id }, function (err, createdUser) {
 					    if(err) {
 							throw err;
 							reject();

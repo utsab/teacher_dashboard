@@ -9,7 +9,6 @@ import counter from './counter';
 import {reducer as form} from 'redux-form';
 import user from './user';
 import classForm from './classForm';
-import classDashboard from './classDashboard';
 
 export default combineReducers({
   routing: routerReducer,
@@ -23,6 +22,5 @@ export default combineReducers({
   }),
   pagination,
   user,
-  classForm,
-  classDashboard
+  classForm
 });
