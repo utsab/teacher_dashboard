@@ -9,10 +9,6 @@ var mongoose = require('mongoose'); //mongo connection
 
 			Student.findByIdAndRemove(studentId, function(err,response) {
 				if (err) return handleError(err);
-<<<<<<< HEAD
-=======
-				console.log("delete response!!!!"); 
->>>>>>> Add delete functionality
 			});
 
 			Teacher.findOne({ 'email': teacherEmail }, function (err, person) {
@@ -21,11 +17,7 @@ var mongoose = require('mongoose'); //mongo connection
 				.exec(function (err, students) {
 				  if (err) return handleError(err);
 				  const allStudentsList = students;
-<<<<<<< HEAD
 				  resolve(allStudentsList);
-=======
-				  resolve(allStudentsList); 
->>>>>>> Add delete functionality
 				});
 			});
 		});

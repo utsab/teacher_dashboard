@@ -14,10 +14,7 @@
 		font-weight: 600;
 	}
 	table :global(td) {
-		border-bottom: 1px solid white !important;
-	}
-	table :global(td:last-child) {
-		border-bottom: 1px solid black !important;
+		border-bottom: 1px solid white;
 	}
 	table :global(button) {
 		text-transform: uppercase;

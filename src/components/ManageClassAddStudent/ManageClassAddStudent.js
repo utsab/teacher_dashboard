@@ -61,8 +61,9 @@ export default class ManageClassAddStudent extends Component {
           <td>{student.lastName}</td>
           <td>{student.githubUsername}</td>
           <td>{student.email}</td>
+          <td>{student.dateEnrolled}</td>
           <td>{student.notes}</td>
-          <td><Button data-id={student._id} onClick={this.handleClick}>Edit</Button></td>
+          <td><Button data-id={student._id} onClick={this.handleClick} bsStyle="link">Edit</Button></td>
           <td><i onClick={this.deleteClick} data-id={student._id} className="fa fa-minus-circle" aria-hidden="true"></i></td>
         </tr>
       );
