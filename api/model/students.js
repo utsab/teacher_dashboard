@@ -8,6 +8,7 @@ var studentsSchema = new mongoose.Schema({
   notes: String,
   lastSubmittedAssignment: String,
   daysInactive: String,
+  dateEnrolled: String,
   teacher: {type: mongoose.Schema.Types.ObjectId, ref:'Teachers'}
 });
 

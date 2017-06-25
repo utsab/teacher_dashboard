@@ -11,7 +11,6 @@ import info from './info';
 import widgets from './widgets';
 import user from './user';
 import classForm from './classForm';
-import classDashboard from './classDashboard';
 
 export default combineReducers({
   routing: routerReducer,
@@ -27,6 +26,5 @@ export default combineReducers({
   pagination,
   widgets,
   user,
-  classForm,
-  classDashboard
+  classForm
 });

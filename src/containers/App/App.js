@@ -11,7 +11,6 @@ import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import { isLoaded as isUserLoaded, load as loadUser } from 'redux/modules/user';
 import { isLoaded as isStudentLoaded, load as loadStudent } from 'redux/modules/classForm';
-import { isLoaded as isDashboardLoaded, load as loadDashboard } from 'redux/modules/classDashboard';
 
 
 import { InfoBar } from 'components';
@@ -33,9 +32,6 @@ import { asyncConnect } from 'redux-async-connect';
 
     if (!isStudentLoaded(getState()) && isAuthLoaded(getState())) {
       promises.push(dispatch(loadStudent()));
-    }
-    if (!isDashboardLoaded(getState()) && isAuthLoaded(getState())) {
-      promises.push(dispatch(loadDashboard()));
     }
 
     if (!isUserLoaded(getState())) {
@@ -98,23 +94,26 @@ export default class App extends Component {
                     {user && <LinkContainer to="/chat">
                       <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Chat</NavItem>
                     </LinkContainer>}
+                    {user && <LinkContainer to="/">
+                      <NavItem eventKey={2} className="hidden-sm hidden-md hidden-lg">Dashboard</NavItem>
+                    </LinkContainer>}
                     {user && <LinkContainer to="/manageClass">
-                      <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Manage Class</NavItem>
+                      <NavItem eventKey={3} className="hidden-sm hidden-md hidden-lg">Manage Class</NavItem>
                     </LinkContainer>}
                     {user && <LinkContainer to="/widgets">
-                      <NavItem eventKey={2} className="hidden-sm hidden-md hidden-lg">Widgets</NavItem>
+                      <NavItem eventKey={4} className="hidden-sm hidden-md hidden-lg">Widgets</NavItem>
                     </LinkContainer>}
                     {user && <LinkContainer to="/survey">
-                      <NavItem eventKey={3} className="hidden-sm hidden-md hidden-lg">Survey</NavItem>
+                      <NavItem eventKey={5} className="hidden-sm hidden-md hidden-lg">Survey</NavItem>
                     </LinkContainer>}
                     {user && <LinkContainer to="/pagination">
-                      <NavItem eventKey={4} className="hidden-sm hidden-md hidden-lg">Pagination</NavItem>
+                      <NavItem eventKey={6} className="hidden-sm hidden-md hidden-lg">Pagination</NavItem>
                     </LinkContainer>}
                     {user && <LinkContainer to="/about">
-                      <NavItem eventKey={5} className="hidden-sm hidden-md hidden-lg">About Us</NavItem>
+                      <NavItem eventKey={7} className="hidden-sm hidden-md hidden-lg">About Us</NavItem>
                     </LinkContainer>}
                     {user && <LinkContainer to="/logout">
-                      <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                      <NavItem eventKey={8} className="logout-link" onClick={this.handleLogout}>
                         Logout
                       </NavItem>
                     </LinkContainer>}
@@ -131,23 +130,26 @@ export default class App extends Component {
             </Navbar.Header>
               <Navbar.Collapse eventKey={0}>
                 <Nav navbar>
+                  {user && <LinkContainer to="/">
+                      <NavItem eventKey={1}>Dashboard</NavItem>
+                    </LinkContainer>}
                   {user && <LinkContainer to="/chat">
-                    <NavItem eventKey={1}>Chat</NavItem>
+                    <NavItem eventKey={2}>Chat</NavItem>
                   </LinkContainer>}
                   {user && <LinkContainer to="/manageClass">
-                    <NavItem eventKey={1}>Manage Class</NavItem>
+                    <NavItem eventKey={3}>Manage Class</NavItem>
                   </LinkContainer>}
                   {user && <LinkContainer to="/widgets">
-                    <NavItem eventKey={2}>Widgets</NavItem>
+                    <NavItem eventKey={4}>Widgets</NavItem>
                   </LinkContainer>}
                   {user && <LinkContainer to="/survey">
-                    <NavItem eventKey={3}>Survey</NavItem>
+                    <NavItem eventKey={5}>Survey</NavItem>
                   </LinkContainer>}
                   {user && <LinkContainer to="/pagination">
-                    <NavItem eventKey={4}>Pagination</NavItem>
+                    <NavItem eventKey={6}>Pagination</NavItem>
                   </LinkContainer>}
                   {user && <LinkContainer to="/about">
-                    <NavItem eventKey={5}>About Us</NavItem>
+                    <NavItem eventKey={7}>About Us</NavItem>
                   </LinkContainer>}
                 </Nav>
               </Navbar.Collapse>
