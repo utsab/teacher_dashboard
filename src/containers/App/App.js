@@ -12,7 +12,6 @@ import { isLoaded as isUserLoaded, load as loadUser } from 'redux/modules/user';
 import { isLoaded as isStudentLoaded, load as loadStudent } from 'redux/modules/classForm';
 import { isLoaded as isDashboardLoaded, load as loadDashboard } from 'redux/modules/classDashboard';
 
-import { ShowUsers } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
@@ -120,7 +119,6 @@ export default class App extends Component {
           <div className={styles.appContent}>
             {this.props.children}
           </div>
-          <ShowUsers/>
         </div>
       </div>
     );
