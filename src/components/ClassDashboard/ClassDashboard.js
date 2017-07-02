@@ -18,7 +18,6 @@ export default class ClassDashboard extends Component {
           <td>{student.firstName}</td>
           <td>{student.lastName}</td>
           <td><a target="_blank" href={'https://www.freecodecamp.com/' + student.githubUsername}>{student.githubUsername}</a></td>
-          <td>{student.email}</td>
           <td>{student.daysInactive}</td>
           <td>{student.lastSubmittedAssignment}</td>
         </tr>
@@ -32,7 +31,6 @@ export default class ClassDashboard extends Component {
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Free Code Camp Profile</th>
-                <th>Submissions</th>
                 <th>Days Inactive</th>
                 <th>Last Submitted</th>
               </tr>
