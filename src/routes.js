@@ -3,13 +3,10 @@ import {IndexRoute, Route} from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {
     App,
-    Chat,
     Home,
     Widgets,
-    About,
     Login,
     LoginSuccess,
-    Survey,
     NotFound,
     Pagination,
     ManageClass
@@ -43,10 +40,7 @@ export default (store) => {
 
       { /* Routes requiring login */ }
       <Route onEnter={requireLogin}>
-        <Route path="about" component={About}/>
-        <Route path="chat" component={Chat}/>
         <Route path="pagination" component={Pagination}/>
-        <Route path="survey" component={Survey}/>
         <Route path="widgets" component={Widgets}/>
         <Route path="loginSuccess" component={LoginSuccess}/>
         <Route path="manageClass" component={ManageClass}/>

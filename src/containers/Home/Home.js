@@ -114,19 +114,7 @@ export default class Home extends Component {
               data.
             </dd>
             <dt>Server-side data loading</dt>
-            <dd>
-              The <Link to="/widgets">Widgets page</Link> demonstrates how to fetch data asynchronously from
-              some source that is needed to complete the server-side rendering. <code>Widgets.js</code>'s
-              <code>asyncConnect()</code> function is called before the widgets page is loaded, on either the server
-              or the client, allowing all the widget data to be loaded and ready for the page to render.
-            </dd>
             <dt>Data loading errors</dt>
-            <dd>
-              The <Link to="/widgets">Widgets page</Link> also demonstrates how to deal with data loading
-              errors in Redux. The API endpoint that delivers the widget data intentionally fails 33% of
-              the time to highlight this. The <code>clientMiddleware</code> sends an error action which
-              the <code>widgets</code> reducer picks up and saves to the Redux state for presenting to the user.
-            </dd>
             <dt>Session based login</dt>
             <dd>
               On the <Link to="/login">Login page</Link> you can submit a username which will be sent to the server
@@ -159,10 +147,6 @@ export default class Home extends Component {
               paginate and sort records in a data table.
             </dd>
             <dt>WebSockets / socket.io</dt>
-            <dd>
-              The <Link to="/chat">Chat</Link> uses the socket.io technology for real-time
-              communication between clients. You need to <Link to="/login">login</Link> first.
-            </dd>
           </dl>
 
           <h3>From the author</h3>
