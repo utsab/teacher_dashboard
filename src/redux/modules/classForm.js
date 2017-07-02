@@ -107,7 +107,8 @@ export default function classForm(state = initialState, action = {}) {
       return {
         ...state,
         error: null,
-        showModal: action.showModalBool
+        showModal: action.showModalBool,
+        studentId: action.showModalBool ? state.studentId : undefined
       };
     default:
       return state;
@@ -157,6 +158,7 @@ export function editAStudent(email, github, firstname, lastname, notes, id) {
     })
   };
 }
+
 
 export function isEditClicked(id, firstName, lastName, github, email, notes) {
   return { type: EDIT_STUDENT, id, firstName, lastName, github, email, notes};
