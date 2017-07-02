@@ -24,14 +24,19 @@
 	.addStudent {
 		background-color: #F0F0F0;
 		margin: 0 auto;
-		padding: 5px;
+		padding: 10px;
 		width: 100%;
+		margin-bottom: 30px;
 		button:global {
 			background-color: darkgreen;
 		    border-radius: 0px;
-		    margin: 5px 10px 5px 200px;
 		    font-size: 14px;
-		    padding: 5px 15px 5px 15px;
+		    padding: 7px 17px 7px 17px;
+		    margin-left: 5%;
 		}
+	}
+	.numStudents {
+		display: inline-block;
+		margin-left: 70%;
 	}
 }
