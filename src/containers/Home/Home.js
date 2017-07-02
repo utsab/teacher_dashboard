@@ -159,10 +159,6 @@ export default class Home extends Component {
               paginate and sort records in a data table.
             </dd>
             <dt>WebSockets / socket.io</dt>
-            <dd>
-              The <Link to="/chat">Chat</Link> uses the socket.io technology for real-time
-              communication between clients. You need to <Link to="/login">login</Link> first.
-            </dd>
           </dl>
 
           <h3>From the author</h3>

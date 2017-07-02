@@ -89,9 +89,6 @@ export default class App extends Component {
             </Navbar.Header>
              {user && <Navbar.Collapse eventKey={0}>
                   <Nav navbar>
-                    {user && <LinkContainer to="/chat">
-                      <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Chat</NavItem>
-                    </LinkContainer>}
                     {user && <LinkContainer to="/manageClass">
                       <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Manage Class</NavItem>
                     </LinkContainer>}
@@ -118,9 +115,6 @@ export default class App extends Component {
               </Navbar.Header>
                 <Navbar.Collapse eventKey={0}>
                   <Nav navbar>
-                    {user && <LinkContainer to="/chat">
-                      <NavItem eventKey={1}>Chat</NavItem>
-                    </LinkContainer>}
                     {user && <LinkContainer to="/manageClass">
                       <NavItem eventKey={1}>Manage Class</NavItem>
                     </LinkContainer>}
