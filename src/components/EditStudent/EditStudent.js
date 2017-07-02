@@ -89,19 +89,19 @@ export default class EditStudent extends Component {
 
             <form >
               First name<br/>
-              <input type="text" ref="firstname" className="form-control" value={this.props.firstName} onChange={this.handleChangeFirstName.bind(this)}/>
+              <input type="text" ref="firstname" className="form-control" defaultValue={this.props.firstName} onChange={this.handleChangeFirstName.bind(this)}/>
               <br/>
               Last name<br/>
-              <input type="text" ref="lastname" className="form-control" value={this.props.lastName} />
+              <input type="text" ref="lastname" className="form-control" defaultValue={this.props.lastName} />
               <br/>
               Student Email<br/>
-              <input type="text" ref="studentEmail" className="form-control" value={this.props.email} />
+              <input type="text" ref="studentEmail" className="form-control" defaultValue={this.props.email} />
               <br/>
               Github Username<br/>
-              <input type="text" ref="github" className="form-control" value={this.props.github} />
+              <input type="text" ref="github" className="form-control" defaultValue={this.props.github} />
               <br/>
               Notes<br/>
-              <input type="text" ref="notes" className="form-control" value={this.props.notes} />
+              <input type="text" ref="notes" className="form-control" defaultValue={this.props.notes} />
               <br/>
               <br/>
               <input onClick={this.onSubmitForm} type="submit" value="Submit"/>
