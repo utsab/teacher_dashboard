@@ -7,7 +7,6 @@ import { pagination } from 'violet-paginator';
 import auth from './auth';
 import counter from './counter';
 import {reducer as form} from 'redux-form';
-import info from './info';
 import widgets from './widgets';
 import user from './user';
 import classForm from './classForm';
@@ -23,7 +22,6 @@ export default combineReducers({
     counter2: counter,
     counter3: counter
   }),
-  info,
   pagination,
   widgets,
   user,

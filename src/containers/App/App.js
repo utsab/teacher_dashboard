@@ -7,14 +7,11 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import logo from './freeCodeCamp.jpg';
-import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import { isLoaded as isUserLoaded, load as loadUser } from 'redux/modules/user';
 import { isLoaded as isStudentLoaded, load as loadStudent } from 'redux/modules/classForm';
 import { isLoaded as isDashboardLoaded, load as loadDashboard } from 'redux/modules/classDashboard';
 
-
-import { InfoBar } from 'components';
 import { ShowUsers } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
@@ -24,9 +21,6 @@ import { asyncConnect } from 'redux-async-connect';
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
-    if (!isInfoLoaded(getState())) {
-      promises.push(dispatch(loadInfo()));
-    }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
@@ -145,7 +139,6 @@ export default class App extends Component {
             {this.props.children}
           </div>
           <ShowUsers/>
-          <InfoBar/>
 
           <div className="well text-center">
             Have questions? Ask for help <a
