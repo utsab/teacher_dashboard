@@ -92,9 +92,6 @@ export default class App extends Component {
                     {user && <LinkContainer to="/manageClass">
                       <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Manage Class</NavItem>
                     </LinkContainer>}
-                    {user && <LinkContainer to="/pagination">
-                      <NavItem eventKey={4} className="hidden-sm hidden-md hidden-lg">Pagination</NavItem>
-                    </LinkContainer>}
                     {user && <LinkContainer to="/logout">
                       <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
                         Logout
@@ -114,9 +111,6 @@ export default class App extends Component {
                   <Nav navbar>
                     {user && <LinkContainer to="/manageClass">
                       <NavItem eventKey={1}>Manage Class</NavItem>
-                    </LinkContainer>}
-                    {user && <LinkContainer to="/pagination">
-                      <NavItem eventKey={4}>Pagination</NavItem>
                     </LinkContainer>}
                   </Nav>
                 </Navbar.Collapse>
