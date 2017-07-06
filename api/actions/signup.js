@@ -2,11 +2,7 @@ var mongoose = require('mongoose'); //mongo connection
 var passwordHash = require('password-hash');
 
 export default function signup(req, err, model) {
-	console.log("PASSWORD!!!!!");
 	var hashedPassword = passwordHash.generate(req.body.password);
-	console.log(hashedPassword);
-	console.log(passwordHash.isHashed(req.body.password)); // false
-    console.log(passwordHash.isHashed(hashedPassword)); // true
 
 	const Teacher = model.teachers;
 	const user = {
@@ -24,4 +20,3 @@ export default function signup(req, err, model) {
 	req.session.user = user;
   	return Promise.resolve(user);
 }
-

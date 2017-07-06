@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'); //mongo connection
 
 	export default function loadClass(req,err,model) {
-	console.log("IN LOAD CLASS FUNXTION");
 	 return new Promise((resolve,reject) => {
 	 	var Student = model.students;
 	 	var Teacher = model.teachers;
@@ -13,7 +12,7 @@ var mongoose = require('mongoose'); //mongo connection
 				.exec(function (err, students) {
 				  if (err) return handleError(err);
 				  const allStudentsList = students;
-				  resolve(allStudentsList); 
+				  resolve(allStudentsList);
 				});
 			});
 		});

@@ -2,7 +2,6 @@ var mongoose = require('mongoose'); //mongo connection
 
 	export default function postClassForm(req, err, model) {
 		return new Promise((resolve,reject) => {
-			console.log("12345");
 	 		var Student = model.students;
 	 		var Teacher = model.teachers;
 
@@ -22,7 +21,7 @@ var mongoose = require('mongoose'); //mongo connection
 			    var yyyy = today.getFullYear();
 			    if(dd < 10){
 			    	dd ='0' + dd;
-			    } 
+			    }
 			    if(mm < 10){
 			    	mm ='0' + mm;
 			    }
@@ -49,7 +48,7 @@ var mongoose = require('mongoose'); //mongo connection
 							.exec(function (err, students) {
 							  if (err) return handleError(err);
 							  const allStudentsList = students;
-							  resolve(allStudentsList); 
+							  resolve(allStudentsList);
 							});
 						}
 					});

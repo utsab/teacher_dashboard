@@ -38,8 +38,6 @@ export default class ClassForm extends Component {
     const firstname = this.firstname.value;
     const lastname = this.lastname.value;
     const notes = this.notes.value;
-    console.log(firstname);
-    console.log(github);
     this.props.addStudent(studentEmail, github, firstname, lastname, notes);
   }
 
@@ -116,4 +114,3 @@ export default class ClassForm extends Component {
     );
   }
 }
-

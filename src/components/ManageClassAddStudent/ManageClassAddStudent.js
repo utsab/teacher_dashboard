@@ -49,7 +49,6 @@ export default class ManageClassAddStudent extends Component {
   }
 
   open = () => {
-    console.log('in open func');
     this.props.showModalFuncEdit(true);
   }
 

@@ -30,7 +30,6 @@ export default function classForm(state = initialState, action = {}) {
         loading: true
       };
     case LOAD_SUCCESS:
-      console.log(action.result);
       return {
         ...state,
         loading: false,
@@ -88,8 +87,6 @@ export default function classForm(state = initialState, action = {}) {
         loading: true
       };
     case SAVE_SUCCESS_DELETE:
-      console.log(action.result);
-      console.log('DELETE!!!!!!!!SUCCESS');
       return {
         ...state,
         loading: false,
@@ -109,8 +106,6 @@ export default function classForm(state = initialState, action = {}) {
         showModal: action.showModalBool
       };
     case EDIT_STUDENT:
-      console.log('in edit student');
-      console.log(action.id);
       return {
         ...state,
         studentId: action.id
@@ -121,13 +116,11 @@ export default function classForm(state = initialState, action = {}) {
         editShowModal: action.showModalBool
       };
     case LOAD_DASHBOARD:
-      console.log('dashbaord load');
       return {
         ...state,
         loading: true
       };
     case LOAD_SUCCESS_DASHBOARD:
-      console.log('load success dashboard!!!!!');
       return {
         ...state,
         loading: false,
@@ -135,7 +128,6 @@ export default function classForm(state = initialState, action = {}) {
         studentList: action.result
       };
     case LOAD_FAIL_DASHBOARD:
-      console.log('dashbaord load fail');
       return {
         ...state,
         loading: false,
@@ -159,8 +151,6 @@ export function load() {
 }
 
 export function addStudent(email, github, firstname, lastname, notes) {
-  console.log('ADD STUDENTS!!!***************');
-  console.log(email, github, firstname, lastname, notes);
   return {
     types: [SAVE, SAVE_SUCCESS, SAVE_FAIL],
     promise: (client) => client.post('/postClassForm', {
@@ -176,7 +166,6 @@ export function addStudent(email, github, firstname, lastname, notes) {
 }
 
 export function editAStudent(email, github, firstname, lastname, notes, id) {
-  console.log('EDIT STUDENTS!!!***************');
   return {
     types: [SAVE_EDIT, SAVE_SUCCESS_EDIT, SAVE_FAIL_EDIT],
     promise: (client) => client.post('/editClassForm', {
@@ -193,7 +182,6 @@ export function editAStudent(email, github, firstname, lastname, notes, id) {
 }
 
 export function deleteStudent(id) {
-  console.log('DELETE STUDENT FUNCTION');
   return {
     types: [SAVE_DELETE, SAVE_SUCCESS_DELETE, SAVE_FAIL_DELETE],
     promise: (client) => client.post('/deleteStudent', {
@@ -222,4 +210,3 @@ export function loadDashboard() {
     promise: (client) => client.get('/loadDashboard')
   };
 }
-

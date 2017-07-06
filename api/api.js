@@ -32,9 +32,6 @@ setupServer();
 
 
 function setupServer() {
-
-  console.log("In setupServer... ********************")
-
   app.use(session({
     secret: 'react and redux rule!!!!',
     resave: false,
@@ -48,7 +45,6 @@ function setupServer() {
     const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
     const {action, params} = mapUrl(actions, splittedUrlPath);
-    // console.log(action);
     if (action) {
       var actionResult = action(req, params, model);
       actionResult.then((result) => {
