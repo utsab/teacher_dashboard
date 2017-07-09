@@ -33,7 +33,6 @@ export default class ClassForm extends Component {
   }
 
   onSubmitForm = (event) => {
-    this.close();
     this.addNewStudent(event);
   }
 
@@ -45,11 +44,6 @@ export default class ClassForm extends Component {
     const lastname = this.refs.lastname;
     const notes = this.refs.notes;
     this.props.addStudent(studentEmail.value, github.value, firstname.value, lastname.value, notes.value);
-    studentEmail.value = '';
-    github.value = '';
-    firstname.value = '';
-    lastname.value = '';
-    notes.value = '';
   }
 
   close = () => {

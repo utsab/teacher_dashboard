@@ -47,6 +47,7 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
+        showModal: false,
         studentList: action.result,
         error: null
       };
@@ -57,6 +58,7 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
+        showModal: true,
         error: action.error
       };
     case SAVE_EDIT:
