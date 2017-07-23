@@ -75,7 +75,7 @@ export default class App extends Component {
           <Navbar fixedTop>
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="/" className="navbar-brand pull-left">
+                <a href="/manageClass" className="navbar-brand pull-left">
                   <img src={logo}/>
                   <span>Teacher Dashboard BETA</span>
                 </a>
