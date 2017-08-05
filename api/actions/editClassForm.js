@@ -1,11 +1,13 @@
 var mongoose = require('mongoose'); //mongo connection
-var http = require('http');
+var validateGithubUsername = require('./validateGithub'); 
 
 ///Users/utsabsaha/Documents/learning/fcc-stack/teacher_dashboard
 
 
 	export default function editClassForm(req, err,model) {
 		return new Promise((resolve,reject) => {
+
+			console.log("In editClassForm........"); 
 
 			var errors = []; 
 
@@ -30,51 +32,22 @@ var http = require('http');
 	 		}
 			 		
 
-
-			var options = {
-			  host: 'fcc-profile-scraper.herokuapp.com',
-			  port: 80,
-			  path: '/user/' + req.body.github
-			};
-
-
-
-			http.get(options, function(resp){
-			  resp.setEncoding('utf8');
-
-			  console.log("response status code: " + resp.statusCode);
+	 		validateGithubUsername(req.body.github, function(isValid) {
+	 			if (isValid) {
+	 				saveExistingStudentToDB(); 
+	 			} else {
+	 				errors.push("Github username is invalid"); 
+	 				console.log("Found " + errors.length + " form validation error(s)"); 
+	 				reject(errors);
+	 			}
+	 		}); 
 
 
-			  resp.on('data', function(chunk){
-			    //do something with chunk?  Maybe we can remove this 'data' handler
-			    console.log("received data!");
-			  });
 
-			  resp.on('end', function() {
-			  	console.log("resp ended!!!!!!"); 
-			  	console.log("status code in resp: " + this.statusCode); 
-
-			  	if (this.statusCode === 404) {
-			  		 errors.push("Github username is invalid"); 
-			  		 console.log("Found " + errors.length + " form validation error(s)"); 
-			  		 reject(errors);
-			  	} else {
-			  		// Assume request succeeded
-			  		console.log("Github is valid!...."); 
-			  		saveExistingStudentToDB(req); 
-			  	}
-			  });
-
-
-			}).on("error", function(e){
-			  console.log("Got error:^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ " + e.message);
-			});
-
-
-			function saveExistingStudentToDB(req) {
+			function saveExistingStudentToDB() {
 			 	
 			 	console.log("in saveNewStudentToDB........"); 
-			 	
+
 		 		var Student = model.students;
 		 		var Teacher = model.teachers;
 
