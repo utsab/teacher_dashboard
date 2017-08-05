@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'); //mongo connection
 var http = require('http');
+var validateGithubUsername = require('./validateGithub'); 
 
 	export default function postClassForm(req, err, model) {
 		return new Promise((resolve,reject) => {
@@ -28,48 +29,18 @@ var http = require('http');
 	 		}
 	 		
 
-	 		var options = {
-	 		  host: 'fcc-profile-scraper.herokuapp.com',
-	 		  port: 80,
-	 		  path: '/user/' + req.body.github
-	 		};
+	 		validateGithubUsername(req.body.github, function(isValid) {
+	 			if (isValid) {
+	 				saveNewStudentToDB(); 
+	 			} else {
+	 				errors.push("Github username is invalid"); 
+	 				console.log("Found " + errors.length + " form validation error(s)"); 
+	 				reject(errors);
+	 			}
+	 		}); 
 
 
-
-	 		http.get(options, function(resp){
-	 		  resp.setEncoding('utf8');
-
-	 		  console.log("response status code: " + resp.statusCode);
-
-
-	 		  resp.on('data', function(chunk){
-	 		    //do something with chunk?  Maybe we can remove this 'data' handler
-	 		    console.log("received data!");
-	 		  });
-
-	 		  resp.on('end', function() {
-	 		  	console.log("resp ended!!!!!!"); 
-	 		  	console.log("status code in resp: " + this.statusCode); 
-
-	 		  	if (this.statusCode === 404) {
-	 		  		 errors.push("Github username is invalid"); 
-	 		  		 console.log("Found " + errors.length + " form validation error(s)"); 
-	 		  		 reject(errors);
-	 		  	} else {
-	 		  		// Assume request succeeded
-	 		  		console.log("Github is valid!...."); 
-	 		  		saveNewStudentToDB(req); 
-	 		  	}
-	 		  });
-
-
-	 		}).on("error", function(e){
-	 		  console.log("Got error:^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ " + e.message);
-	 		});
-
-
-
-	 		function saveNewStudentToDB(req) {
+	 		function saveNewStudentToDB() {
 	 			console.log("in saveNewStudentToDB........"); 
 
 		 		var Student = model.students;
