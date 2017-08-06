@@ -86,7 +86,7 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        showEditStudentModal: false,
+        showEditStudentModal: true,
         error: action.error
       };
     case SHOW_MODAL:

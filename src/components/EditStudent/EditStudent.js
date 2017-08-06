@@ -42,7 +42,6 @@ export default class EditStudent extends Component {
   }
 
   onSubmitForm = (event) => {
-    this.close();
     this.editStudent(event);
   }
 

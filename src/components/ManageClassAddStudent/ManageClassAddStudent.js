@@ -14,7 +14,8 @@ function mapStateToProps(state) {
     github: state.classForm.github,
     email: state.classForm.email,
     notes: state.classForm.notes,
-    studentList: state.classForm.studentList
+    studentList: state.classForm.studentList,
+    showEditStudentModal: state.classForm.showEditStudentModal
   };
 }
 
@@ -36,7 +37,7 @@ export default class ManageClassAddStudent extends Component {
     github: PropTypes.string,
     email: PropTypes.string,
     notes: PropTypes.string,
-    showModal: PropTypes.bool,
+    showEditStudentModal: PropTypes.bool,
     showModalFuncEdit: PropTypes.func
   }
 
