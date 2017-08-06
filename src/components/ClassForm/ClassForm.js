@@ -9,7 +9,7 @@ function mapStateToProps(state) {
   return {
     studentList: state.classForm.studentList,
     errors: state.classForm.error,
-    showModal: state.classForm.showModal
+    showModal: state.classForm.showAddStudentModal
   };
 }
 

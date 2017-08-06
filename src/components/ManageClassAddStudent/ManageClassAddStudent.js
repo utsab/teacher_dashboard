@@ -14,7 +14,6 @@ function mapStateToProps(state) {
     github: state.classForm.github,
     email: state.classForm.email,
     notes: state.classForm.notes,
-    showModal: state.classForm.showModal,
     studentList: state.classForm.studentList
   };
 }

@@ -5,13 +5,16 @@ import * as classActions from 'redux/modules/classForm';
 import Button from 'react-bootstrap/lib/Button';
 
 @connect(
-  state => ({studentList: state.classForm.studentList, showModal: state.classForm.showModal}),
+  state => ({
+    studentList: state.classForm.studentList
+  }),
   classActions)
 
 export default class ManageClass extends Component {
   static propTypes = {
     studentList: PropTypes.array,
-    showModal: PropTypes.bool,
+    showAddModal: PropTypes.bool,
+    showEditModal: PropTypes.bool,
     showModalFunc: PropTypes.func,
   }
 

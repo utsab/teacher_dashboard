@@ -47,7 +47,7 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        showModal: false,
+        showAddStudentModal: false,
         studentList: action.result,
         error: null
       };
@@ -58,7 +58,7 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        showModal: true,
+        showAddStudentModal: true,
         error: action.error
       };
     case SAVE_EDIT:
@@ -78,6 +78,7 @@ export default function classForm(state = initialState, action = {}) {
         loading: false,
         loaded: false,
         studentList: action.result,
+        showEditStudentModal: false,
         error: null
       };
     case SAVE_FAIL_EDIT:
@@ -85,13 +86,14 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
+        showEditStudentModal: false,
         error: action.error
       };
     case SHOW_MODAL:
       return {
         ...state,
         error: null,
-        showModal: action.showModalBool
+        showAddStudentModal: action.showModalBool
       };
     case EDIT_STUDENT:
       console.log('in edit student');
@@ -109,8 +111,8 @@ export default function classForm(state = initialState, action = {}) {
       return {
         ...state,
         error: null,
-        showModal: action.showModalBool,
-        studentId: action.showModalBool ? state.studentId : undefined
+        showEditStudentModal: action.showModalBool,
+        studentId: action.showEditStudentModal ? state.studentId : undefined
       };
     default:
       return state;
