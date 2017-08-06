@@ -53,11 +53,6 @@ export default class EditStudent extends Component {
     const lastname = this.refs.lastname;
     const notes = this.refs.notes;
     this.props.editAStudent(studentEmail.value, github.value, firstname.value, lastname.value, notes.value, this.props.studentId);
-    studentEmail.value = '';
-    github.value = '';
-    firstname.value = '';
-    lastname.value = '';
-    notes.value = '';
   }
 
   close = () => {
