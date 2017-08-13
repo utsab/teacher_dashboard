@@ -1,59 +1,28 @@
-.classDashboard{
-	.divTable{
-		display: table;
-		width: 100%;
+.classDashboard {
+	color: #888;
+	table-responsive :global {
+		padding-top: 30px;
 	}
-	.divTableRow {
-		display: table-row;
+	table :global {
+		width: 80%;
+		margin: 0 auto;
 	}
-	.divTableHeading {
-		background-color: #EEE;
-		display: table-header-group;
+	table :global(thead) {
+		background-color: #f8f8f8
 	}
-	.divTableCell, .divTableHead {
-		border: 1px solid #999999;
-		display: table-cell;
-		padding: 3px 10px;
-		width: 200px;
+	table :global(th) {
+		font-weight: 600;
 	}
-	.divTableCellHeader {
-		border: 1px solid #999999;
-		display: table-cell;
-		padding: 3px 10px;
-		width: 200px;
-		font-size: 20px;
-		color: red;
-		font-weight: bold;
+	table :global(td) {
+		border-bottom: 1px solid white !important;
 	}
-	.divTableHeading {
-		background-color: #EEE;
-		display: table-header-group;
-		font-weight: bold;
+	table :global(td:last-child) {
+		border-bottom: 1px solid black !important;
 	}
-	.divTableFoot {
-		background-color: #EEE;
-		display: table-footer-group;
-		font-weight: bold;
+	table :global(button) {
+		text-transform: uppercase;
+		color: #888;
+    	font-weight: 200;
+		text-decoration: none;
 	}
-	.divTableBody {
-		display: table-row-group;
-	}
-	.backdropStyle {
-      position: 'fixed';
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      backgroundColor: 'rgba(0,0,0,0.3)';
-      padding: 50;
-    };
-
-    .modalStyle {
-      backgroundColor: '#fff';
-      borderRadius: 5;;
-      maxWidth: 500;;
-      minHeight: 300;;
-      margin: '0 auto;';
-      padding: 30;
-    };
 }

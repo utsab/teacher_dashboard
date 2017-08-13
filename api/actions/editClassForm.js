@@ -7,7 +7,6 @@ var mongoose = require('mongoose'); //mongo connection
 
 	 		const teacherEmail = req.session.user.email;
 	 		const studentId = req.body.id;
-	 		console.log(studentId);
 			const student = {
 			    email: req.body.email,
 			    github: req.body.github,
@@ -18,7 +17,7 @@ var mongoose = require('mongoose'); //mongo connection
 
 			Student.findOneAndUpdate({_id: studentId}, {$set:{ firstName: student.firstname, lastName:student.lastname, githubUsername:student.github, email:student.email, notes:student.notes}}, {new: true}, function(err, doc){
 			    if(err){
-			        console.log("Something wrong when updating data!");
+			        console.log("Something wrong when updating student data!");
 			    }
 			});
 
@@ -28,7 +27,7 @@ var mongoose = require('mongoose'); //mongo connection
 				.exec(function (err, students) {
 				  if (err) return handleError(err);
 				  const allStudentsList = students;
-				  resolve(allStudentsList); 
+				  resolve(allStudentsList);
 				});
 			});
 		});

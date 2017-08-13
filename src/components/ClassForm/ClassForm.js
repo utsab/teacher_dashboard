@@ -2,8 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {addStudent, showModalFunc} from 'redux/modules/classForm';
-import Modal from 'react-bootstrap/lib/Modal';
-import Button from 'react-bootstrap/lib/Button';
+import * as ReactBootstrap from 'react-bootstrap';
 
 function mapStateToProps(state) {
   return {
@@ -34,17 +33,12 @@ export default class ClassForm extends Component {
 
   addNewStudent = (event) => {
     event.preventDefault();
-    const studentEmail = this.refs.studentEmail;
-    const github = this.refs.github;
-    const firstname = this.refs.firstname;
-    const lastname = this.refs.lastname;
-    const notes = this.refs.notes;
-    this.props.addStudent(studentEmail.value, github.value, firstname.value, lastname.value, notes.value);
-    studentEmail.value = '';
-    github.value = '';
-    firstname.value = '';
-    lastname.value = '';
-    notes.value = '';
+    const studentEmail = this.studentEmail.value;
+    const github = this.github.value;
+    const firstname = this.firstname.value;
+    const lastname = this.lastname.value;
+    const notes = this.notes.value;
+    this.props.addStudent(studentEmail, github, firstname, lastname, notes);
   }
 
   close = () => {
@@ -52,44 +46,71 @@ export default class ClassForm extends Component {
   }
 
   render() {
-    const styles = require('containers/ManageClass/ManageClass.scss');
+    const styles = require('./ClassForm.scss');
     return (
-      <Modal show={this.props.showModal} onHide={this.close}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add New Student</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <ReactBootstrap.Modal show={this.props.showModal} onHide={this.close} className={styles.appForm}>
+        <ReactBootstrap.Modal.Header closeButton className={styles.modalHeader}>
+          <ReactBootstrap.Modal.Title className={styles.modalTitle}>Add Student</ReactBootstrap.Modal.Title>
+        </ReactBootstrap.Modal.Header>
+        <ReactBootstrap.Modal.Body>
         <div className={styles.backdropStyle}>
           <div className={styles.modalStyle}>
-            <form>
-              First name<br/>
-              <input type="text" ref="firstname" className="form-control"/>
-              <br/>
-              Last name<br/>
-              <input type="text" ref="lastname" className="form-control"/>
-              <br/>
-              Student Email<br/>
-              <input type="text" ref="studentEmail" className="form-control"/>
-              <br/>
-              Github Username<br/>
-              <input type="text" ref="github" className="form-control"/>
-              <br/>
-              Notes<br/>
-              <input type="text" ref="notes" className="form-control"/>
-              <br/>
-              <br/>
-              <input onClick={this.onSubmitForm} type="submit" value="Submit"/>
-              <br/>
-              <br/>
-            </form>
+            <ReactBootstrap.Form horizontal>
+               <ReactBootstrap.FormGroup controlId="formHorizontalEmail">
+                <ReactBootstrap.Col componentClass={ReactBootstrap.ControlLabel} sm={4}>
+                  Student's Email
+                </ReactBootstrap.Col>
+                <ReactBootstrap.Col sm={6}>
+                  <ReactBootstrap.FormControl type="text" inputRef={(ref) => {this.studentEmail = ref;}} />
+                </ReactBootstrap.Col>
+              </ReactBootstrap.FormGroup>
+
+              <ReactBootstrap.FormGroup controlId="formHorizontalGithub">
+                <ReactBootstrap.Col componentClass={ReactBootstrap.ControlLabel} sm={4}>
+                  Github Username
+                </ReactBootstrap.Col>
+                <ReactBootstrap.Col sm={6}>
+                  <ReactBootstrap.FormControl type="text" inputRef={(ref) => {this.github = ref;}} />
+                </ReactBootstrap.Col>
+              </ReactBootstrap.FormGroup>
+
+              <ReactBootstrap.FormGroup controlId="formHorizontalFirstName">
+                <ReactBootstrap.Col componentClass={ReactBootstrap.ControlLabel} sm={4}>
+                  First Name
+                </ReactBootstrap.Col>
+                <ReactBootstrap.Col sm={6}>
+                  <ReactBootstrap.FormControl type="text" inputRef={(ref) => {this.firstname = ref;}} />
+                </ReactBootstrap.Col>
+              </ReactBootstrap.FormGroup>
+              <ReactBootstrap.FormGroup controlId="formHorizontalLastName">
+                <ReactBootstrap.Col componentClass={ReactBootstrap.ControlLabel} sm={4}>
+                  Last Name
+                </ReactBootstrap.Col>
+                <ReactBootstrap.Col sm={6}>
+                  <ReactBootstrap.FormControl type="text" inputRef={(ref) => {this.lastname = ref;}} />
+                </ReactBootstrap.Col>
+              </ReactBootstrap.FormGroup>
+
+              <ReactBootstrap.FormGroup controlId="formHorizontalNotes">
+                <ReactBootstrap.Col componentClass={ReactBootstrap.ControlLabel} sm={4}>
+                  Notes
+                </ReactBootstrap.Col>
+                <ReactBootstrap.Col sm={6}>
+                  <ReactBootstrap.FormControl type="text" inputRef={(ref) => {this.notes = ref;}} />
+                </ReactBootstrap.Col>
+              </ReactBootstrap.FormGroup>
+
+              <ReactBootstrap.FormGroup>
+                <ReactBootstrap.Col smOffset={3} sm={6}>
+                  <ReactBootstrap.Button className={styles.cancelButton} onClick={this.close}>Cancel</ReactBootstrap.Button>
+                  <ReactBootstrap.Button className={styles.submitButton} type="submit" onClick={this.onSubmitForm}>Add Student</ReactBootstrap.Button>
+                </ReactBootstrap.Col>
+              </ReactBootstrap.FormGroup>
+            </ReactBootstrap.Form>
           </div>
         </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.close}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+        </ReactBootstrap.Modal.Body>
+      </ReactBootstrap.Modal>
     );
   }
 }
-

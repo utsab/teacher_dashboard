@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {isEditClicked, showModalFuncEdit} from 'redux/modules/classForm';
+import {isEditClicked, showModalFuncEdit, deleteStudent} from 'redux/modules/classForm';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {EditStudent} from 'components';
@@ -10,12 +10,13 @@ function mapStateToProps(state) {
   return {
     studentId: state.classForm.studentId,
     showModal: state.classForm.showModal,
+    showEditModal: state.classForm.showEditModal,
     studentList: state.classForm.studentList
   };
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({isEditClicked: isEditClicked, showModalFuncEdit: showModalFuncEdit}, dispatch);
+  return bindActionCreators({isEditClicked: isEditClicked, showModalFuncEdit: showModalFuncEdit, deleteStudent: deleteStudent}, dispatch);
 }
 
 @connect(mapStateToProps, matchDispatchToProps)
@@ -28,45 +29,50 @@ export default class ManageClassAddStudent extends Component {
     handleClick: PropTypes.func,
     studentId: PropTypes.string,
     showModal: PropTypes.bool,
-    showModalFuncEdit: PropTypes.func
+    showEditModal: PropTypes.bool,
+    showModalFuncEdit: PropTypes.func,
+    deleteStudent: PropTypes.func,
+    studentList: PropTypes.array
   }
 
   handleClick = (event) => {
-    console.log('IN HANDLE Click EDIT');
     event.preventDefault();
     const studentID = event.currentTarget.attributes['data-id'].value;
     this.open();
     this.props.isEditClicked(studentID);
   };
 
+  deleteClick = (event) => {
+    event.preventDefault();
+    const studentID = event.currentTarget.attributes['data-id'].value;
+    this.props.deleteStudent(studentID);
+  }
+
   open = () => {
-    console.log('in open func');
     this.props.showModalFuncEdit(true);
   }
 
   render() {
     const overlay = this.props.studentId ? <EditStudent studentId={this.props.studentId} /> : null;
-    const styles = require('containers/ManageClass/ManageClass.scss');
-
     const allStudents = this.props.arrayStudents.map(function returnArray(student) {
       return (
-        <div className={styles.divTableRow}>
-          <div className={styles.divTableCell}>{student.firstName}</div>
-          <div className={styles.divTableCell}>{student.lastName}</div>
-          <div className={styles.divTableCell}>{student.githubUsername}</div>
-          <div className={styles.divTableCell}>{student.email}</div>
-          <div className={styles.divTableCell}>{student.notes}</div>
-          <div className={styles.divTableCellHeader}><Button data-id={student._id} onClick={this.handleClick}>Edit</Button></div>
-        </div>
+        <tr>
+          <td>{student.firstName}</td>
+          <td>{student.lastName}</td>
+          <td>{student.githubUsername}</td>
+          <td>{student.email}</td>
+          <td>{student.dateEnrolled}</td>
+          <td>{student.notes}</td>
+          <td><Button data-id={student._id} onClick={this.handleClick} bsStyle="link">Edit</Button></td>
+          <td><i onClick={this.deleteClick} data-id={student._id} className="fa fa-minus-circle" aria-hidden="true"></i></td>
+        </tr>
       );
     }, this);
     return (
-      <div className={styles.divTable}>
-      {overlay}
-        <div className={styles.divTableBody}>
-            {allStudents}
-        </div>
-      </div>
+      <tbody>
+        {overlay}
+        {allStudents}
+      </tbody>
     );
   }
 }

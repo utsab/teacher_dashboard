@@ -54,13 +54,10 @@ export default function users(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  console.log('user isLoaded');
-  console.log(globalState.user);
   return globalState.user && globalState.user.loaded;
 }
 
 export function load() {
-  console.log('loading users **************');
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/loadUsers')
@@ -68,7 +65,6 @@ export function load() {
 }
 
 export function addUser() {
-  console.log('ADD USER!!!***************');
   return {
     types: [SAVE, SAVE_SUCCESS, SAVE_FAIL],
     promise: (client) => client.post('/postUser')

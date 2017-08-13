@@ -10,7 +10,6 @@ import logo from './freeCodeCamp.jpg';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
 import { isLoaded as isUserLoaded, load as loadUser } from 'redux/modules/user';
 import { isLoaded as isStudentLoaded, load as loadStudent } from 'redux/modules/classForm';
-import { isLoaded as isDashboardLoaded, load as loadDashboard } from 'redux/modules/classDashboard';
 
 import { push } from 'react-router-redux';
 import config from '../../config';
@@ -26,9 +25,6 @@ import { asyncConnect } from 'redux-async-connect';
 
     if (!isStudentLoaded(getState()) && isAuthLoaded(getState())) {
       promises.push(dispatch(loadStudent()));
-    }
-    if (!isDashboardLoaded(getState()) && isAuthLoaded(getState())) {
-      promises.push(dispatch(loadDashboard()));
     }
 
     if (!isUserLoaded(getState())) {
@@ -56,7 +52,7 @@ export default class App extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
-      this.props.pushState('/loginSuccess');
+      this.props.pushState('/manageClass');
     } else if (this.props.user && !nextProps.user) {
       // logout
       this.props.pushState('/');
@@ -79,7 +75,7 @@ export default class App extends Component {
           <Navbar fixedTop>
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="/" className="navbar-brand pull-left">
+                <a href="/manageClass" className="navbar-brand pull-left">
                   <img src={logo}/>
                   <span>Teacher Dashboard BETA</span>
                 </a>
@@ -89,10 +85,10 @@ export default class App extends Component {
              {user && <Navbar.Collapse eventKey={0}>
                   <Nav navbar>
                     {user && <LinkContainer to="/manageClass">
-                      <NavItem eventKey={1} className="hidden-sm hidden-md hidden-lg">Manage Class</NavItem>
+                      <NavItem eventKey={3} className="hidden-sm hidden-md hidden-lg">Manage Class</NavItem>
                     </LinkContainer>}
                     {user && <LinkContainer to="/logout">
-                      <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                      <NavItem eventKey={8} className="logout-link" onClick={this.handleLogout}>
                         Logout
                       </NavItem>
                     </LinkContainer>}

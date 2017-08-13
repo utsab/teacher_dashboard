@@ -1,59 +1,42 @@
 .manageClass{
-	.divTable{
-		display: table;
-		width: 100%;
+	color: #888;
+	table-responsive :global {
+		padding-top: 30px;
 	}
-	.divTableRow {
-		display: table-row;
+	table :global {
+		width: 80%;
+		margin: 0 auto;
 	}
-	.divTableHeading {
-		background-color: #EEE;
-		display: table-header-group;
-	}
-	.divTableCell, .divTableHead {
-		border: 1px solid #999999;
-		display: table-cell;
-		padding: 3px 10px;
-		width: 200px;
-	}
-	.divTableCellHeader {
-		border: 1px solid #999999;
-		display: table-cell;
-		padding: 3px 10px;
-		width: 200px;
+	table :global(.fa) {
+		color: #F08E8E;
+		padding-top: 5px;
 		font-size: 20px;
-		color: red;
-		font-weight: bold;
 	}
-	.divTableHeading {
-		background-color: #EEE;
-		display: table-header-group;
-		font-weight: bold;
+	table :global(th) {
+		font-weight: 600;
 	}
-	.divTableFoot {
-		background-color: #EEE;
-		display: table-footer-group;
-		font-weight: bold;
+	table :global(button) {
+		text-transform: uppercase;
+		color: #888;
+    	font-weight: 200;
+		text-decoration: none;
 	}
-	.divTableBody {
-		display: table-row-group;
+	.addStudent {
+		background-color: #F0F0F0;
+		margin: 0 auto;
+		padding: 10px;
+		width: 100%;
+		margin-bottom: 30px;
+		button:global {
+			background-color: darkgreen;
+		    border-radius: 0px;
+		    font-size: 14px;
+		    padding: 7px 17px 7px 17px;
+		    margin-left: 5%;
+		}
 	}
-	.backdropStyle {
-      position: 'fixed';
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      backgroundColor: 'rgba(0,0,0,0.3)';
-      padding: 50;
-    };
-
-    .modalStyle {
-      backgroundColor: '#fff';
-      borderRadius: 5;;
-      maxWidth: 500;;
-      minHeight: 300;;
-      margin: '0 auto;';
-      padding: 30;
-    };
+	.numStudents {
+		display: inline-block;
+		margin-left: 70%;
+	}
 }
