@@ -30,7 +30,6 @@ export default function classForm(state = initialState, action = {}) {
         loading: true
       };
     case LOAD_SUCCESS:
-      console.log(action.result);
       return {
         ...state,
         loading: false,
@@ -129,28 +128,6 @@ export default function classForm(state = initialState, action = {}) {
         studentList: action.result
       };
     case LOAD_FAIL_DASHBOARD:
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-        error: action.error
-      };
-    case LOAD_DASHBOARD:
-      console.log('dashbaord load');
-      return {
-        ...state,
-        loading: true
-      };
-    case LOAD_SUCCESS_DASHBOARD:
-      console.log('load success dashboard!!!!!');
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        studentList: action.result
-      };
-    case LOAD_FAIL_DASHBOARD:
-      console.log('dashbaord load fail');
       return {
         ...state,
         loading: false,

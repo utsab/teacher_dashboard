@@ -2,7 +2,6 @@ var mongoose = require('mongoose'); //mongo connection
 
 	export default function postClassForm(req, err, model) {
 		return new Promise((resolve,reject) => {
-			console.log("12345");
 	 		var Student = model.students;
 	 		var Teacher = model.teachers;
 
