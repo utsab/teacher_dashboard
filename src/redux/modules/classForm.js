@@ -113,7 +113,7 @@ export default function classForm(state = initialState, action = {}) {
     case SHOW_EDIT_MODAL:
       return {
         ...state,
-        editShowModal: action.showModalBool
+        showEditModal: action.showModalBool
       };
     case LOAD_DASHBOARD:
       return {
