@@ -25,10 +25,12 @@ export default class ManageClass extends Component {
     return (
       <div className={styles.manageClass}>
         <div className={styles.addStudent}>
-          <Button bsStyle="primary" onClick={this.open}>
+          <Button
+            bsStyle="primary"
+            onClick={this.open}
+          >
             Add to Class Roster
           </Button>
-          <p className={styles.numStudents}>{this.props.studentList.length} students</p>
           <ClassForm />
         </div>
 
@@ -51,4 +53,3 @@ export default class ManageClass extends Component {
     );
   }
 }
-
