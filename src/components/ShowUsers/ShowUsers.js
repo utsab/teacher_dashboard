@@ -13,18 +13,9 @@ export default class ShowUsers extends Component {
   }
 
   render() {
-    const {user, addUser} = this.props; // eslint-disable-line no-shadow
-    const userDivs = user.map(function addUserx(userObj) {
-      return (
-        <div>
-          <div>{userObj.name}</div>
-          <div>{userObj.email}</div>
-        </div>
-        );
-    });
+    const {addUser} = this.props; // eslint-disable-line no-shadow
     return (
       <div>
-        <div>{userDivs}</div>
         <button onClick={addUser}>Add User</button>
       </div>
     );

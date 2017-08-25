@@ -95,8 +95,6 @@ export default function reducer(state = initialState, action = {}) {
         logoutError: action.error
       };
     case GET_KEY:
-      console.log(action.newKey);
-      console.log('HELLO!!!');
       return {
         ...state,
         key: action.newKey

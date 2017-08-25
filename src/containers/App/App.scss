@@ -1,22 +1,89 @@
 .app {
-  .brand {
-    position: absolute;
-    $size: 40px;
-    top: 5px;
-    left: 5px;
-    display: inline-block;
-    background: #2d2d2d url('../Home/logo.png') no-repeat center center;
-    width: $size;
-    height: $size;
-    background-size: 80%;
-    margin: 0 10px 0 0;
-    border-radius: $size / 2;
+  nav :global {
+    background-color: darkgreen;
   }
-  nav :global(.fa) {
-    font-size: 2em;
-    line-height: 20px;
+  nav :global(.navbar-brand) {
+    padding: 0px;
+    margin-bottom: 10px;
+    border-bottom: none;
+  }
+  nav :global(.navbar-brand > span) {
+    color: white;
+    padding-left: 10px;
+    display: inline-block;
+    font-size: 15px;
+  }
+  nav :global(.navbar-brand > img) {
+    height: 70%;
+    padding-top: 0px;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+  }
+  :global(.navbar-nav > li > a) {
+    color: white;
+    border-bottom: none;
+    font-size: 15px;
+  }
+  :global(.navbar-nav > li > a:hover) {
+    color: #ccc;
+  }
+  @media (min-width: 768px) {
+    nav :global(.navbar-brand>img) {
+      height: 100%;
+      padding-top: 6px;
+      display: inline-block;
+    }
+    nav :global(.navbar-brand>span) {
+    padding-left: 18px;
+    }
+    nav :global(a) {
+      font-size: 20px;
+    }
+    nav :global(.logout-link) {
+      position: relative;
+      left: 550px;
+    }
+  }
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    nav :global(.logout-link) {
+      position: relative;
+      left: 200px;
+    }
   }
 }
+
+.appNav {
+  nav :global {
+    background-color: white;
+    color: black;
+    border: 0px;
+    padding: 0px;
+  }
+  nav :global(a) {
+    font-size: 20px;
+    border-bottom: none;
+    color: #777;
+  }
+  :global(.navbar-default .navbar-nav > .active > a) {
+    color: #777;
+    font-weight: 600;
+  }
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    nav :global { 
+      margin: 50px 0;
+    }
+  }
+}
+
 .appContent {
   margin: 50px 0; // for fixed navbar
 }

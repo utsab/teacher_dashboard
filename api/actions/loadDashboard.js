@@ -24,9 +24,9 @@ var request = require('request');
 				      }
 				      body = JSON.parse(body);
 
-				    var dates = [];  
+				    var dates = [];
 
-				    body.completedChallenges.map(function(challenge) { 
+				    body.completedChallenges.map(function(challenge) {
 				    	if(challenge.completed_at !== 'Completed'){
 				    		dates.push(new Date(convertDate(challenge.completed_at)))
 				    	}
@@ -39,7 +39,7 @@ var request = require('request');
 					}
 
 				    var latest = new Date(Math.max.apply(null,dates));
-				    
+
 				    var d = new Date(latest);
 					var date = d.getUTCDate();
 					var month = d.getUTCMonth() + 1;
@@ -48,51 +48,49 @@ var request = require('request');
 					var finalDate = month + '-' + date + '-' + year;
 
 					var todayDate = new Date()
-					var currentDate = todayDate.getUTCDate(); 
+					var currentDate = todayDate.getUTCDate();
 					var currentMonth = todayDate.getUTCMonth() + 1;
 					var currentYear = todayDate.getUTCFullYear();
 
 					var currentFinalDate = currentMonth + '-' + currentDate + '-' + currentYear;
 
 
-					Date.daysBetween = function( date1, date2 ) {   //Get 1 day in milliseconds   
+					Date.daysBetween = function( date1, date2 ) {   //Get 1 day in milliseconds
 						var one_day=1000*60*60*24;    // Convert both dates to milliseconds
-						var date1_ms = date1.getTime();   
-						var date2_ms = date2.getTime();    // Calculate the difference in milliseconds  
-						var difference_ms = Math.abs(date2_ms - date1_ms);        // Convert back to days and return 
+						var date1_ms = date1.getTime();
+						var date2_ms = date2.getTime();    // Calculate the difference in milliseconds
+						var difference_ms = Math.abs(date2_ms - date1_ms);        // Convert back to days and return
 						if (difference_ms < one_day) {
 							return 0;
-						}  
+						}
 						else {
-							return Math.round(difference_ms/one_day); 
+							return Math.round(difference_ms/one_day);
 						}
 					}
- 
- 
+
+
  					var daysSinceLastSubmission = Date.daysBetween(d,todayDate)
 
 					Student.findOneAndUpdate({email: student.email}, {$set:{lastSubmittedAssignment:finalDate}}, {new: true}, function(err, doc){
 					    if(err){
-					        console.log("Something wrong when updating data!");
+					        console.log("Something wrong when updating student data!");
 					    }
 
 					});
 
 					Student.findOneAndUpdate({email: student.email}, {$set:{daysInactive:daysSinceLastSubmission}}, {new: true}, function(err, doc){
 					    if(err){
-					        console.log("Something wrong when updating data!");
+					        console.log("Something wrong when updating student data!");
 					    }
 
 					});
 				    resolve(students:allStudentsList );
 
-				  }); 
+				  });
 				});
 			});
 		});
-	
+
 	});
 
 }
-
-

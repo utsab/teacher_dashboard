@@ -11,8 +11,6 @@ export default function clientMiddleware(client) {
       }
 
       const [REQUEST, SUCCESS, FAILURE] = types;
-      console.log('IN MIDDLEWARE$$$$$$$$$$$$$$$$********************');
-      console.log(REQUEST);
       next({...rest, type: REQUEST});
 
       const actionPromise = promise(client);

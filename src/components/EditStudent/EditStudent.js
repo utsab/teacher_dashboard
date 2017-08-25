@@ -28,7 +28,7 @@ export default class EditStudent extends Component {
   static propTypes = {
     editAStudent: PropTypes.func.isRequired,
     dispatch: PropTypes.func,
-    showModal: PropTypes.bool,
+    showEditModal: PropTypes.bool,
     close: PropTypes.func,
     id: PropTypes.string,
     firstName: PropTypes.string,
@@ -66,9 +66,8 @@ export default class EditStudent extends Component {
 
   render() {
     const styles = require('containers/ManageClass/ManageClass.scss');
-
     return (
-      <Modal show={this.props.showModal} onHide={this.close}>
+      <Modal show={this.props.showEditModal} onHide={this.close}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Student</Modal.Title>
         </Modal.Header>
@@ -112,4 +111,3 @@ export default class EditStudent extends Component {
     );
   }
 }
-

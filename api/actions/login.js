@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'); //mongo connection
 var passwordHash = require('password-hash');
 
-export default function login(req, err, model) {	
+export default function login(req, err, model) {
 	const Teacher = model.teachers;
 	const user = {
 	    email: req.body.email,
@@ -11,10 +11,10 @@ export default function login(req, err, model) {
  	return new Promise((resolve,reject) => {
 	 	Teacher.findOne({ 'email': user.email }, function (err, person) {
 			if (err) {
-				reject(new Error('fail!!!!!!!!!!!!!!!!!!!!!!!!!!in person===null'));
-			} 
+				reject(new Error('error: person===null'));
+			}
 			else if(person == null) {
-				reject(new Error('user not found'));
+				reject(new Error('error: user not found'));
 			}
 			else {
 				if((passwordHash.verify(user.password, person.password))) { // true
@@ -24,7 +24,7 @@ export default function login(req, err, model) {
 				  	resolve(user);
 				}
 				else {
-					reject(new Error('email and password do not match'));
+					reject(new Error('error: email and password do not match'));
 				}
 
 			 }

@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {isEditClicked, showModalFuncEdit} from 'redux/modules/classForm';
+import {isEditClicked, showModalFuncEdit, deleteStudent} from 'redux/modules/classForm';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {EditStudent} from 'components';
@@ -13,14 +13,12 @@ function mapStateToProps(state) {
     lastName: state.classForm.lastName,
     github: state.classForm.github,
     email: state.classForm.email,
-    notes: state.classForm.notes,
-    studentList: state.classForm.studentList,
-    showEditStudentModal: state.classForm.showEditStudentModal
+    notes: state.classForm.notes
   };
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({isEditClicked: isEditClicked, showModalFuncEdit: showModalFuncEdit}, dispatch);
+  return bindActionCreators({isEditClicked: isEditClicked, showModalFuncEdit: showModalFuncEdit, deleteStudent: deleteStudent}, dispatch);
 }
 
 @connect(mapStateToProps, matchDispatchToProps)
@@ -37,12 +35,11 @@ export default class ManageClassAddStudent extends Component {
     github: PropTypes.string,
     email: PropTypes.string,
     notes: PropTypes.string,
-    showEditStudentModal: PropTypes.bool,
     showModalFuncEdit: PropTypes.func
+    deleteStudent: PropTypes.func
   }
 
   handleClick = (event) => {
-    console.log('IN HANDLE Click EDIT');
     event.preventDefault();
     const studentID = event.currentTarget.attributes['data-id'].value;
     const firstName = event.currentTarget.attributes['data-first-name'].value;
@@ -55,45 +52,47 @@ export default class ManageClassAddStudent extends Component {
     this.props.isEditClicked(studentID, firstName, lastName, github, email, notes);
   };
 
+  deleteClick = (event) => {
+    event.preventDefault();
+    const studentID = event.currentTarget.attributes['data-id'].value;
+    this.props.deleteStudent(studentID);
+  }
+
   open = () => {
-    console.log('in open func');
     this.props.showModalFuncEdit(true);
   }
 
   render() {
     const overlay = this.props.studentId ? <EditStudent studentId={this.props.studentId} email={this.props.email} firstName={this.props.firstName} lastName={this.props.lastName} notes={this.props.notes} github={this.props.github}/> : null;
-    const styles = require('containers/ManageClass/ManageClass.scss');
-
-
     const allStudents = this.props.arrayStudents.map(function returnArray(student) {
       return (
-        <div className={styles.divTableRow}>
-          <div className={styles.divTableCell}>{student.firstName}</div>
-          <div className={styles.divTableCell}>{student.lastName}</div>
-          <div className={styles.divTableCell}>{student.githubUsername}</div>
-          <div className={styles.divTableCell}>{student.email}</div>
-          <div className={styles.divTableCell}>{student.notes}</div>
-          <div className={styles.divTableCellHeader}>
-            <Button data-id={student._id}
+        <tr>
+          <td>{student.firstName}</td>
+          <td>{student.lastName}</td>
+          <td>{student.githubUsername}</td>
+          <td>{student.email}</td>
+          <td>{student.dateEnrolled}</td>
+          <td>{student.notes}</td>
+          <td><Button data-id={student._id}
                     data-email={student.email}
                     data-first-name={student.firstName}
                     data-github={student.githubUsername}
                     data-last-name={student.lastName}
-                    data-notes={student.notes}
-                    onClick={this.handleClick}>
+                    data-notes={student.notes} 
+                    onClick={this.handleClick} 
+                    bsStyle="link">
               Edit
             </Button>
-          </div>
-        </div>
+          </td>
+          <td><i onClick={this.deleteClick} data-id={student._id} className="fa fa-minus-circle" aria-hidden="true"></i></td>
+        </tr>
       );
     }, this);
     return (
-      <div className={styles.divTable}>
-      {overlay}
-        <div className={styles.divTableBody}>
-            {allStudents}
-        </div>
-      </div>
+      <tbody>
+        {overlay}
+        {allStudents}
+      </tbody>
     );
   }
 }
