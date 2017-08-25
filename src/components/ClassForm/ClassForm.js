@@ -7,12 +7,16 @@ import * as ReactBootstrap from 'react-bootstrap';
 function mapStateToProps(state) {
   return {
     studentList: state.classForm.studentList,
-    showModal: state.classForm.showModal
+    errors: state.classForm.error,
+    showModal: state.classForm.showAddStudentModal
   };
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({addStudent: addStudent, showModalFunc: showModalFunc}, dispatch);
+  return bindActionCreators({
+    addStudent: addStudent,
+    showModalFunc: showModalFunc
+  }, dispatch);
 }
 
 @connect(mapStateToProps, matchDispatchToProps)
@@ -23,11 +27,11 @@ export default class ClassForm extends Component {
     dispatch: PropTypes.func,
     showModal: PropTypes.bool,
     close: PropTypes.func,
-    showModalFunc: PropTypes.func
+    showModalFunc: PropTypes.func,
+    errors: PropTypes.array
   }
 
   onSubmitForm = (event) => {
-    this.close();
     this.addNewStudent(event);
   }
 
@@ -55,6 +59,11 @@ export default class ClassForm extends Component {
         <ReactBootstrap.Modal.Body>
         <div className={styles.backdropStyle}>
           <div className={styles.modalStyle}>
+            <ul>
+              {this.props.errors && this.props.errors.map(function test(error) {
+                return <li>{error}</li>;
+              })}
+            </ul>
             <ReactBootstrap.Form horizontal>
                <ReactBootstrap.FormGroup controlId="formHorizontalEmail">
                 <ReactBootstrap.Col componentClass={ReactBootstrap.ControlLabel} sm={4}>

@@ -53,13 +53,18 @@ export default function classForm(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        studentList: action.result
+        showAddStudentModal: false,
+        studentList: action.result,
+        error: null
       };
     case SAVE_FAIL:
+      console.log('In classForm reducer: save failed!!!!!!!!!!!!!');
+
       return {
         ...state,
         loading: false,
         loaded: false,
+        showAddStudentModal: true,
         error: action.error
       };
     case SAVE_EDIT:
@@ -70,15 +75,24 @@ export default function classForm(state = initialState, action = {}) {
     case SAVE_SUCCESS_EDIT:
       return {
         ...state,
+        studentId: null,
+        firstName: null,
+        lastName: null,
+        github: null,
+        email: null,
+        notes: null,
         loading: false,
         loaded: false,
-        studentList: action.result
+        studentList: action.result,
+        showEditModal: false,
+        error: null
       };
     case SAVE_FAIL_EDIT:
       return {
         ...state,
         loading: false,
         loaded: false,
+        showEditModal: true,
         error: action.error
       };
     case SAVE_DELETE:
@@ -103,16 +117,24 @@ export default function classForm(state = initialState, action = {}) {
     case SHOW_MODAL:
       return {
         ...state,
-        showModal: action.showModalBool
+        error: null,
+        showAddStudentModal: action.showModalBool
       };
     case EDIT_STUDENT:
       return {
         ...state,
-        studentId: action.id
+        studentId: action.id,
+        firstName: action.firstName,
+        lastName: action.lastName,
+        github: action.github,
+        email: action.email,
+        notes: action.notes
       };
     case SHOW_EDIT_MODAL:
       return {
         ...state,
+        error: null,
+        studentId: action.showModalBool ? state.studentId : undefined
         showEditModal: action.showModalBool
       };
     case LOAD_DASHBOARD:
@@ -192,8 +214,8 @@ export function deleteStudent(id) {
   };
 }
 
-export function isEditClicked(id) {
-  return { type: EDIT_STUDENT, id };
+export function isEditClicked(id, firstName, lastName, github, email, notes) {
+  return { type: EDIT_STUDENT, id, firstName, lastName, github, email, notes};
 }
 
 export function showModalFuncEdit(showModalBool) {
