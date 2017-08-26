@@ -134,7 +134,7 @@ export default function classForm(state = initialState, action = {}) {
       return {
         ...state,
         error: null,
-        studentId: action.showModalBool ? state.studentId : undefined
+        studentId: action.showModalBool ? state.studentId : undefined,
         showEditModal: action.showModalBool
       };
     case LOAD_DASHBOARD:
