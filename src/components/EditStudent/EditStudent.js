@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 
 function mapStateToProps(state) {
   return {
-    showModal: state.classForm.showEditStudentModal,
+    showEditModal: state.classForm.showEditModal,
     studentList: state.classForm.studentList,
     firstName: state.classForm.firstName,
     lastName: state.classForm.lastName,

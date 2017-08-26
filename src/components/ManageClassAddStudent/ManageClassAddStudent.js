@@ -35,11 +35,12 @@ export default class ManageClassAddStudent extends Component {
     github: PropTypes.string,
     email: PropTypes.string,
     notes: PropTypes.string,
-    showModalFuncEdit: PropTypes.func
+    showModalFuncEdit: PropTypes.func,
     deleteStudent: PropTypes.func
   }
 
   handleClick = (event) => {
+    console.log("In handleClick A!!!!");
     event.preventDefault();
     const studentID = event.currentTarget.attributes['data-id'].value;
     const firstName = event.currentTarget.attributes['data-first-name'].value;
@@ -48,6 +49,7 @@ export default class ManageClassAddStudent extends Component {
     const email = event.currentTarget.attributes['data-email'].value;
     const notes = event.currentTarget.attributes['data-notes'].value;
 
+    console.log("in handleClick"); 
     this.open();
     this.props.isEditClicked(studentID, firstName, lastName, github, email, notes);
   };
